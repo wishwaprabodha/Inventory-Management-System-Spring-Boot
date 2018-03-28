@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="NewPersistenceUnit">
+        <class>com.example.Entity.CategoryEntity</class>
+        <class>com.example.Entity.CategoryLogEntity</class>
+        <class>com.example.Entity.PricingEntity</class>
+        <class>com.example.Entity.PricingLogEntity</class>
+        <class>com.example.Entity.ProductEntity</class>
+        <class>com.example.Entity.ProductLogEntity</class>
+        <class>com.example.Entity.StockEntity</class>
+        <class>com.example.Entity.StockLogEntity</class>
+        <class>com.example.Entity.SupplierEntity</class>
+        <class>com.example.Entity.SupplierLogEntity</class>
+        <properties>
+            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/ipay"/>
+            <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/ipay"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/ipay"/>
+            <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/ipay"/>
+            <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+        </properties>
+    </persistence-unit>
+</persistence>
