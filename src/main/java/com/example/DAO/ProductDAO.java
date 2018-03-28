@@ -1,6 +1,5 @@
 package com.example.DAO;
 
-import com.example.Entity.Product;
 import com.example.Entity.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

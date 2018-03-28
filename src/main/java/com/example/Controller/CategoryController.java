@@ -1,6 +1,6 @@
 package com.example.Controller;
 
-import com.example.Entity.Category;
+import com.example.Entity.CategoryEntity;
 import com.example.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public CategoryService categoryService;
 
 
     @RequestMapping("")
-    public List<Category> getAllCategory() {
+    public List<CategoryEntity> getAllCategory() {
 
         //return categoryService.getAllCategoryList();
         return categoryService.findAll();
@@ -28,20 +28,20 @@ public CategoryService categoryService;
 
 
     @RequestMapping("/categories/{id}")
-    public Category searchCategory(@PathVariable int  id){
+    public CategoryEntity searchCategory(@PathVariable int  id){
         //return categoryService.searchCategory(id);
         return categoryService.find(id);
     }
 
     @RequestMapping(method = RequestMethod.POST,value = "")
-    public void addCategory(@RequestBody Category category) {
+    public void addCategory(@RequestBody CategoryEntity category) {
 
         //categoryService.addCategory(category);
         categoryService.insert(category);
     }
 
     @RequestMapping("/categories/update/{id}")
-    public void updateCategory(@RequestBody Category category,@PathVariable int categoryId) {
+    public void updateCategory(@RequestBody CategoryEntity category,@PathVariable int categoryId) {
         categoryService.updateCategory(categoryId,category);
     }
 

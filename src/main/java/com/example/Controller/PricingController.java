@@ -1,6 +1,6 @@
 package com.example.Controller;
 
-import com.example.Entity.Pricing;
+import com.example.Entity.PricingEntity;
 import com.example.Service.PricingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,7 @@ public class PricingController {
 
 
     @RequestMapping("")
-    public List<Pricing> getAllPricing() {
+    public List<PricingEntity> getAllPricing() {
 
         //return pricingService.getAllCategoryList();
         return pricingService.findAll();
@@ -34,20 +34,20 @@ public class PricingController {
 
 
     @RequestMapping("/pricings/{id}")
-    public Pricing searchPricing(@PathVariable int  id){
+    public PricingEntity searchPricing(@PathVariable int  id){
         //return categoryService.searchCategory(id);
         return pricingService.find(id);
     }
 
     @RequestMapping(method = RequestMethod.POST,value = "")
-    public void addPricing(@RequestBody Pricing  pricing) {
+    public void addPricing(@RequestBody PricingEntity  pricing) {
 
         //categoryService.addCategory(category);
         pricingService.insert( pricing);
     }
 
     @RequestMapping("/pricings/update/{id}")
-    public void updateCategory(@RequestBody Pricing  pricing,@PathVariable int  pricingId) {
+    public void updateCategory(@RequestBody PricingEntity  pricing,@PathVariable int  pricingId) {
         pricingService.updatePricing( pricingId, pricing);
     }
 

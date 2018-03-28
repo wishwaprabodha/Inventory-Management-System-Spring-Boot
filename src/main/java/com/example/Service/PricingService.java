@@ -1,7 +1,7 @@
 package com.example.Service;
 
-import com.example.Entity.Pricing;
 import com.example.DAO.PricingDAO;
+import com.example.Entity.PricingEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,38 +25,38 @@ public class PricingService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public int insert(Pricing pricing) {
+    public int insert(PricingEntity pricing) {
         entityManager.persist(pricing);
         return pricing.getPricingId();
     }
 
 
-    public Pricing find(int  id) {
-        return entityManager.find(Pricing.class, id);
+    public PricingEntity find(int  id) {
+        return entityManager.find(PricingEntity.class, id);
     }
 
-    public List<Pricing> findAll() {
-        Query query = entityManager.createNamedQuery("Pricing.add",Pricing.class);
+    public List<PricingEntity> findAll() {
+        Query query = entityManager.createNamedQuery("Pricing.add",PricingEntity.class);
         return query.getResultList();
     }
 
-    public void addPricing(Pricing categoryNew){
-        pricingDAO.save(categoryNew);
+    public void addPricing(PricingEntity pricingNew){
+        pricingDAO.save(pricingNew);
     }
 
-    public Optional<Pricing> searchPricing(int  id){
+    public Optional<PricingEntity> searchPricing(int  id){
         return pricingDAO.findById(id);
     }
 
-    public void updatePricing(int  id,Pricing category){
-        pricingDAO.save(category);
+    public void updatePricing(int  id,PricingEntity pricing){
+        pricingDAO.save(pricing);
     }
 
     public void deletePricing(int  id){
         pricingDAO.deleteById(id);
     }
 
-    public List<Pricing> getByName(String name){return pricingDAO.getAllByName(name); }
+    public List<PricingEntity> getByName(String name){return pricingDAO.getAllByName(name); }
 
 
 }

@@ -1,7 +1,7 @@
 package com.example.Controller;
 
-import com.example.Entity.Category;
-import com.example.Entity.Product;
+import com.example.Entity.CategoryEntity;
+import com.example.Entity.ProductEntity;
 import com.example.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +21,7 @@ public class ProductController {
     public ProductService productService;
 
     @RequestMapping("")
-    public List<Product> getAllProducts() {
+    public List<ProductEntity> getAllProducts() {
 
         //return productService.getAllProductList();
         return productService.findAll();
@@ -29,21 +29,21 @@ public class ProductController {
 
 
     @RequestMapping("/{id}")
-    public Product searchProduct(@PathVariable int  id){
+    public ProductEntity searchProduct(@PathVariable int  id){
         //return productService.searchProduct(id);
         return productService.find(id);
     }
 
     @RequestMapping(method = RequestMethod.POST,value = "")
-    public void addProduct(@RequestBody Product product,@RequestBody Category category) {
+    public void addProduct(@RequestBody ProductEntity product,@RequestBody CategoryEntity category) {
 
         //productService.addProduct(product);
-        product.setCategory(category);
+        product.setCategoryByCategoryId(category);
         productService.insert(product);
         }
 
     @RequestMapping("/update/{id}")
-    public void updateProduct(@RequestBody Product product,@PathVariable int produtId) {
+    public void updateProduct(@RequestBody ProductEntity product,@PathVariable int produtId) {
         productService.updateProduct(produtId,product);
     }
 

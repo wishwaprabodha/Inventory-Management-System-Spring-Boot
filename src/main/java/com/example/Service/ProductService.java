@@ -1,7 +1,7 @@
 package com.example.Service;
 
-import com.example.Entity.Product;
 import com.example.DAO.ProductDAO;
+import com.example.Entity.ProductEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,29 +26,29 @@ public class ProductService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public int insert(Product product) {
+    public int insert(ProductEntity product) {
         entityManager.persist(product);
         return product.getProductId();
     }
 
-    public Product find(int  id) {
-        return entityManager.find(Product.class, id);
+    public ProductEntity find(int  id) {
+        return entityManager.find(ProductEntity.class, id);
     }
 
-    public List<Product> findAll() {
-        Query query = entityManager.createNamedQuery("Product.add",Product.class);
+    public List<ProductEntity> findAll() {
+        Query query = entityManager.createNamedQuery("Product.add",ProductEntity.class);
         return query.getResultList();
     }
 
-    public void addProduct(Product productNew){
+    public void addProduct(ProductEntity productNew){
         productDAO.save(productNew);
     }
 
-    public Optional<Product> searchProduct(int  id){
+    public Optional<ProductEntity> searchProduct(int  id){
         return productDAO.findById(id);
     }
 
-    public void updateProduct(int  id,Product product){
+    public void updateProduct(int  id,ProductEntity product){
         productDAO.save(product);
     }
 
@@ -56,5 +56,5 @@ public class ProductService {
         productDAO.deleteById(id);
     }
 
-    public List<Product> getByName(String name){return productDAO.getAllByName(name); }
+    public List<ProductEntity> getByName(String name){return productDAO.getAllByName(name); }
 }
