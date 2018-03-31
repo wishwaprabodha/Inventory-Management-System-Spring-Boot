@@ -12,8 +12,19 @@
         <class>com.example.Entity.StockLogEntity</class>
         <class>com.example.Entity.SupplierEntity</class>
         <class>com.example.Entity.SupplierLogEntity</class>
+        <class>com.example.Entity.InvoiceEntity</class>
+        <class>com.example.Entity.PermissionEntity</class>
+        <class>com.example.Entity.PermissionLogEntity</class>
+        <class>com.example.Entity.ProductInvoiceEntity</class>
+        <class>com.example.Entity.ProductPricingEntity</class>
+        <class>com.example.Entity.RoleEntity</class>
+        <class>com.example.Entity.RoleLogEntity</class>
+        <class>com.example.Entity.RolePermissionEntity</class>
+        <class>com.example.Entity.UserEntity</class>
+        <class>com.example.Entity.UserLogEntity</class>
+        <class>com.example.Entity.UserRoleEntity</class>
         <properties>
-            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/ipay"/>
+            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/ipayTest2"/>
             <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/ipay"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
@@ -23,4 +34,9 @@
             <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
         </properties>
     </persistence-unit>
+
+    <persistence-unit name="entityManager" transaction-type="RESOURCE_LOCAL">
+        //classes, etc...
+    </persistence-unit>
+
 </persistence>

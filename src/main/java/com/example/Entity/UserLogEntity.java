@@ -1,20 +1,19 @@
 package com.example.Entity;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "stock_log", schema = "ipaytest2")
-public class StockLogEntity {
-    private int refId;
-    private Integer stockId;
-    private Integer supplierId;
-    private Integer productId;
-    private Integer categoryId;
-    private Integer quantity;
-    private Date dateStock;
+@Table(name = "user_log", schema = "ipaytest2")
+public class UserLogEntity {
+    private int userId;
+    private String userName;
+    private String userFname;
+    private String userLname;
+    private int userContactNumber;
+    private String userEmail;
+    private String userAddress;
     private String createdUser;
     private Timestamp createdDateTime;
     private String lastModifiedUser;
@@ -22,73 +21,73 @@ public class StockLogEntity {
     private Integer version;
 
     @Id
-    @Column(name = "refId")
-    public int getRefId() {
-        return refId;
+    @Column(name = "userId")
+    public int getUserId() {
+        return userId;
     }
 
-    public void setRefId(int refId) {
-        this.refId = refId;
-    }
-
-    @Basic
-    @Column(name = "stockId")
-    public Integer getStockId() {
-        return stockId;
-    }
-
-    public void setStockId(Integer stockId) {
-        this.stockId = stockId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Basic
-    @Column(name = "supplierId")
-    public Integer getSupplierId() {
-        return supplierId;
+    @Column(name = "userName")
+    public String getUserName() {
+        return userName;
     }
 
-    public void setSupplierId(Integer supplierId) {
-        this.supplierId = supplierId;
-    }
-
-    @Basic
-    @Column(name = "productId")
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Basic
-    @Column(name = "categoryId")
-    public Integer getCategoryId() {
-        return categoryId;
+    @Column(name = "userFname")
+    public String getUserFname() {
+        return userFname;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    @Basic
-    @Column(name = "quantity")
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setUserFname(String userFname) {
+        this.userFname = userFname;
     }
 
     @Basic
-    @Column(name = "dateStock")
-    public Date getDateStock() {
-        return dateStock;
+    @Column(name = "userLname")
+    public String getUserLname() {
+        return userLname;
     }
 
-    public void setDateStock(Date dateStock) {
-        this.dateStock = dateStock;
+    public void setUserLname(String userLname) {
+        this.userLname = userLname;
+    }
+
+    @Basic
+    @Column(name = "userContactNumber")
+    public int getUserContactNumber() {
+        return userContactNumber;
+    }
+
+    public void setUserContactNumber(int userContactNumber) {
+        this.userContactNumber = userContactNumber;
+    }
+
+    @Basic
+    @Column(name = "userEmail")
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    @Basic
+    @Column(name = "userAddress")
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
     }
 
     @Basic
@@ -145,14 +144,14 @@ public class StockLogEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        StockLogEntity that = (StockLogEntity) o;
-        return refId == that.refId &&
-                Objects.equals(stockId, that.stockId) &&
-                Objects.equals(supplierId, that.supplierId) &&
-                Objects.equals(productId, that.productId) &&
-                Objects.equals(categoryId, that.categoryId) &&
-                Objects.equals(quantity, that.quantity) &&
-                Objects.equals(dateStock, that.dateStock) &&
+        UserLogEntity that = (UserLogEntity) o;
+        return userId == that.userId &&
+                userContactNumber == that.userContactNumber &&
+                Objects.equals(userName, that.userName) &&
+                Objects.equals(userFname, that.userFname) &&
+                Objects.equals(userLname, that.userLname) &&
+                Objects.equals(userEmail, that.userEmail) &&
+                Objects.equals(userAddress, that.userAddress) &&
                 Objects.equals(createdUser, that.createdUser) &&
                 Objects.equals(createdDateTime, that.createdDateTime) &&
                 Objects.equals(lastModifiedUser, that.lastModifiedUser) &&
@@ -163,6 +162,6 @@ public class StockLogEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(refId, stockId, supplierId, productId, categoryId, quantity, dateStock, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
+        return Objects.hash(userId, userName, userFname, userLname, userContactNumber, userEmail, userAddress, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
     }
 }

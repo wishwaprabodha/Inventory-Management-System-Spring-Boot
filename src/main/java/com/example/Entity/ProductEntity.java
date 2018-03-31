@@ -6,23 +6,23 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "product", schema = "ipay")
+@Table(name = "product", schema = "ipaytest2")
 public class ProductEntity {
     private int productId;
     private String productName;
     private Byte productIsService;
     private Double productbuyingPrice;
     private Double productsellingPrice;
-    private Integer pricingId;
     private Integer categoryId;
-    private String productCreatedUser;
-    private Timestamp productCreatedDateTime;
-    private String productModifiedUser;
-    private Timestamp productModifiedDateTime;
-    private PricingEntity pricingByPricingId;
+    private String createdUser;
+    private Timestamp createdDateTime;
+    private String lastModifiedUser;
+    private Timestamp lastModifiedDateTime;
+    private Integer version;
     private CategoryEntity categoryByCategoryId;
+    private Collection<ProductInvoiceEntity> productInvoicesByProductId;
+    private Collection<ProductPricingEntity> productPricingsByProductId;
     private Collection<StockEntity> stocksByProductId;
-    private Collection<StockLogEntity> stockLogsByProductId;
 
     @Id
     @Column(name = "productId")
@@ -75,16 +75,6 @@ public class ProductEntity {
     }
 
     @Basic
-    @Column(name = "pricingId")
-    public Integer getPricingId() {
-        return pricingId;
-    }
-
-    public void setPricingId(Integer pricingId) {
-        this.pricingId = pricingId;
-    }
-
-    @Basic
     @Column(name = "categoryId")
     public Integer getCategoryId() {
         return categoryId;
@@ -95,43 +85,53 @@ public class ProductEntity {
     }
 
     @Basic
-    @Column(name = "productCreatedUser")
-    public String getProductCreatedUser() {
-        return productCreatedUser;
+    @Column(name = "CreatedUser")
+    public String getCreatedUser() {
+        return createdUser;
     }
 
-    public void setProductCreatedUser(String productCreatedUser) {
-        this.productCreatedUser = productCreatedUser;
-    }
-
-    @Basic
-    @Column(name = "productCreatedDateTime")
-    public Timestamp getProductCreatedDateTime() {
-        return productCreatedDateTime;
-    }
-
-    public void setProductCreatedDateTime(Timestamp productCreatedDateTime) {
-        this.productCreatedDateTime = productCreatedDateTime;
+    public void setCreatedUser(String createdUser) {
+        this.createdUser = createdUser;
     }
 
     @Basic
-    @Column(name = "productModifiedUser")
-    public String getProductModifiedUser() {
-        return productModifiedUser;
+    @Column(name = "CreatedDateTime")
+    public Timestamp getCreatedDateTime() {
+        return createdDateTime;
     }
 
-    public void setProductModifiedUser(String productModifiedUser) {
-        this.productModifiedUser = productModifiedUser;
+    public void setCreatedDateTime(Timestamp createdDateTime) {
+        this.createdDateTime = createdDateTime;
     }
 
     @Basic
-    @Column(name = "productModifiedDateTime")
-    public Timestamp getProductModifiedDateTime() {
-        return productModifiedDateTime;
+    @Column(name = "LastModifiedUser")
+    public String getLastModifiedUser() {
+        return lastModifiedUser;
     }
 
-    public void setProductModifiedDateTime(Timestamp productModifiedDateTime) {
-        this.productModifiedDateTime = productModifiedDateTime;
+    public void setLastModifiedUser(String lastModifiedUser) {
+        this.lastModifiedUser = lastModifiedUser;
+    }
+
+    @Basic
+    @Column(name = "LastModifiedDateTime")
+    public Timestamp getLastModifiedDateTime() {
+        return lastModifiedDateTime;
+    }
+
+    public void setLastModifiedDateTime(Timestamp lastModifiedDateTime) {
+        this.lastModifiedDateTime = lastModifiedDateTime;
+    }
+
+    @Basic
+    @Column(name = "VERSION")
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     @Override
@@ -144,28 +144,18 @@ public class ProductEntity {
                 Objects.equals(productIsService, that.productIsService) &&
                 Objects.equals(productbuyingPrice, that.productbuyingPrice) &&
                 Objects.equals(productsellingPrice, that.productsellingPrice) &&
-                Objects.equals(pricingId, that.pricingId) &&
                 Objects.equals(categoryId, that.categoryId) &&
-                Objects.equals(productCreatedUser, that.productCreatedUser) &&
-                Objects.equals(productCreatedDateTime, that.productCreatedDateTime) &&
-                Objects.equals(productModifiedUser, that.productModifiedUser) &&
-                Objects.equals(productModifiedDateTime, that.productModifiedDateTime);
+                Objects.equals(createdUser, that.createdUser) &&
+                Objects.equals(createdDateTime, that.createdDateTime) &&
+                Objects.equals(lastModifiedUser, that.lastModifiedUser) &&
+                Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime) &&
+                Objects.equals(version, that.version);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(productId, productName, productIsService, productbuyingPrice, productsellingPrice, pricingId, categoryId, productCreatedUser, productCreatedDateTime, productModifiedUser, productModifiedDateTime);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "pricingId", referencedColumnName = "pricingId")
-    public PricingEntity getPricingByPricingId() {
-        return pricingByPricingId;
-    }
-
-    public void setPricingByPricingId(PricingEntity pricingByPricingId) {
-        this.pricingByPricingId = pricingByPricingId;
+        return Objects.hash(productId, productName, productIsService, productbuyingPrice, productsellingPrice, categoryId, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
     }
 
     @ManyToOne
@@ -178,6 +168,24 @@ public class ProductEntity {
         this.categoryByCategoryId = categoryByCategoryId;
     }
 
+    @OneToMany(mappedBy = "productByProductProductId")
+    public Collection<ProductInvoiceEntity> getProductInvoicesByProductId() {
+        return productInvoicesByProductId;
+    }
+
+    public void setProductInvoicesByProductId(Collection<ProductInvoiceEntity> productInvoicesByProductId) {
+        this.productInvoicesByProductId = productInvoicesByProductId;
+    }
+
+    @OneToMany(mappedBy = "productByProductProductId")
+    public Collection<ProductPricingEntity> getProductPricingsByProductId() {
+        return productPricingsByProductId;
+    }
+
+    public void setProductPricingsByProductId(Collection<ProductPricingEntity> productPricingsByProductId) {
+        this.productPricingsByProductId = productPricingsByProductId;
+    }
+
     @OneToMany(mappedBy = "productByProductId")
     public Collection<StockEntity> getStocksByProductId() {
         return stocksByProductId;
@@ -185,14 +193,5 @@ public class ProductEntity {
 
     public void setStocksByProductId(Collection<StockEntity> stocksByProductId) {
         this.stocksByProductId = stocksByProductId;
-    }
-
-    @OneToMany(mappedBy = "productByProductId")
-    public Collection<StockLogEntity> getStockLogsByProductId() {
-        return stockLogsByProductId;
-    }
-
-    public void setStockLogsByProductId(Collection<StockLogEntity> stockLogsByProductId) {
-        this.stockLogsByProductId = stockLogsByProductId;
     }
 }

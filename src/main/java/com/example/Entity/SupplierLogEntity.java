@@ -5,16 +5,17 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "supplier_log", schema = "ipay")
+@Table(name = "supplier_log", schema = "ipaytest2")
 public class SupplierLogEntity {
     private int supplierId;
     private String supplierName;
     private Integer supplierContact;
     private String supplierCompany;
-    private String supplierCreatedUser;
-    private Timestamp supplierCreatedDateTime;
-    private String supplierModifiedUser;
-    private Timestamp supplierModifiedDateTime;
+    private String createdUser;
+    private Timestamp createdDateTime;
+    private String lastModifiedUser;
+    private Timestamp lastModifiedDateTime;
+    private Integer version;
 
     @Id
     @Column(name = "supplierId")
@@ -57,43 +58,53 @@ public class SupplierLogEntity {
     }
 
     @Basic
-    @Column(name = "supplierCreatedUser")
-    public String getSupplierCreatedUser() {
-        return supplierCreatedUser;
+    @Column(name = "CreatedUser")
+    public String getCreatedUser() {
+        return createdUser;
     }
 
-    public void setSupplierCreatedUser(String supplierCreatedUser) {
-        this.supplierCreatedUser = supplierCreatedUser;
-    }
-
-    @Basic
-    @Column(name = "supplierCreatedDateTime")
-    public Timestamp getSupplierCreatedDateTime() {
-        return supplierCreatedDateTime;
-    }
-
-    public void setSupplierCreatedDateTime(Timestamp supplierCreatedDateTime) {
-        this.supplierCreatedDateTime = supplierCreatedDateTime;
+    public void setCreatedUser(String createdUser) {
+        this.createdUser = createdUser;
     }
 
     @Basic
-    @Column(name = "supplierModifiedUser")
-    public String getSupplierModifiedUser() {
-        return supplierModifiedUser;
+    @Column(name = "CreatedDateTime")
+    public Timestamp getCreatedDateTime() {
+        return createdDateTime;
     }
 
-    public void setSupplierModifiedUser(String supplierModifiedUser) {
-        this.supplierModifiedUser = supplierModifiedUser;
+    public void setCreatedDateTime(Timestamp createdDateTime) {
+        this.createdDateTime = createdDateTime;
     }
 
     @Basic
-    @Column(name = "supplierModifiedDateTime")
-    public Timestamp getSupplierModifiedDateTime() {
-        return supplierModifiedDateTime;
+    @Column(name = "LastModifiedUser")
+    public String getLastModifiedUser() {
+        return lastModifiedUser;
     }
 
-    public void setSupplierModifiedDateTime(Timestamp supplierModifiedDateTime) {
-        this.supplierModifiedDateTime = supplierModifiedDateTime;
+    public void setLastModifiedUser(String lastModifiedUser) {
+        this.lastModifiedUser = lastModifiedUser;
+    }
+
+    @Basic
+    @Column(name = "LastModifiedDateTime")
+    public Timestamp getLastModifiedDateTime() {
+        return lastModifiedDateTime;
+    }
+
+    public void setLastModifiedDateTime(Timestamp lastModifiedDateTime) {
+        this.lastModifiedDateTime = lastModifiedDateTime;
+    }
+
+    @Basic
+    @Column(name = "VERSION")
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     @Override
@@ -105,15 +116,16 @@ public class SupplierLogEntity {
                 Objects.equals(supplierName, that.supplierName) &&
                 Objects.equals(supplierContact, that.supplierContact) &&
                 Objects.equals(supplierCompany, that.supplierCompany) &&
-                Objects.equals(supplierCreatedUser, that.supplierCreatedUser) &&
-                Objects.equals(supplierCreatedDateTime, that.supplierCreatedDateTime) &&
-                Objects.equals(supplierModifiedUser, that.supplierModifiedUser) &&
-                Objects.equals(supplierModifiedDateTime, that.supplierModifiedDateTime);
+                Objects.equals(createdUser, that.createdUser) &&
+                Objects.equals(createdDateTime, that.createdDateTime) &&
+                Objects.equals(lastModifiedUser, that.lastModifiedUser) &&
+                Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime) &&
+                Objects.equals(version, that.version);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(supplierId, supplierName, supplierContact, supplierCompany, supplierCreatedUser, supplierCreatedDateTime, supplierModifiedUser, supplierModifiedDateTime);
+        return Objects.hash(supplierId, supplierName, supplierContact, supplierCompany, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
     }
 }

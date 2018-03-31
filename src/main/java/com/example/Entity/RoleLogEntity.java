@@ -2,40 +2,37 @@ package com.example.Entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "category", schema = "ipaytest2")
-public class CategoryEntity {
-    private int categoryId;
-    private String categoryName;
+@Table(name = "role_log", schema = "ipaytest2")
+public class RoleLogEntity {
+    private int roleId;
+    private String roleName;
     private String createdUser;
     private Timestamp createdDateTime;
     private String lastModifiedUser;
     private Timestamp lastModifiedDateTime;
     private Integer version;
-    private Collection<ProductEntity> productsByCategoryId;
-    private Collection<StockEntity> stocksByCategoryId;
 
     @Id
-    @Column(name = "categoryId")
-    public int getCategoryId() {
-        return categoryId;
+    @Column(name = "roleId")
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     @Basic
-    @Column(name = "categoryName")
-    public String getCategoryName() {
-        return categoryName;
+    @Column(name = "roleName")
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     @Basic
@@ -92,9 +89,9 @@ public class CategoryEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CategoryEntity that = (CategoryEntity) o;
-        return categoryId == that.categoryId &&
-                Objects.equals(categoryName, that.categoryName) &&
+        RoleLogEntity that = (RoleLogEntity) o;
+        return roleId == that.roleId &&
+                Objects.equals(roleName, that.roleName) &&
                 Objects.equals(createdUser, that.createdUser) &&
                 Objects.equals(createdDateTime, that.createdDateTime) &&
                 Objects.equals(lastModifiedUser, that.lastModifiedUser) &&
@@ -105,24 +102,6 @@ public class CategoryEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(categoryId, categoryName, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
-    }
-
-    @OneToMany(mappedBy = "categoryByCategoryId")
-    public Collection<ProductEntity> getProductsByCategoryId() {
-        return productsByCategoryId;
-    }
-
-    public void setProductsByCategoryId(Collection<ProductEntity> productsByCategoryId) {
-        this.productsByCategoryId = productsByCategoryId;
-    }
-
-    @OneToMany(mappedBy = "categoryByCategoryId")
-    public Collection<StockEntity> getStocksByCategoryId() {
-        return stocksByCategoryId;
-    }
-
-    public void setStocksByCategoryId(Collection<StockEntity> stocksByCategoryId) {
-        this.stocksByCategoryId = stocksByCategoryId;
+        return Objects.hash(roleId, roleName, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
     }
 }

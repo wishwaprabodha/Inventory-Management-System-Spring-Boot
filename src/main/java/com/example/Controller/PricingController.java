@@ -5,7 +5,7 @@ import com.example.Service.PricingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Wishwa Prabodha on 3/27/2018.
@@ -25,16 +25,16 @@ public class PricingController {
     public PricingService pricingService;
 
 
-    @RequestMapping("")
+   /* @RequestMapping("")
     public List<PricingEntity> getAllPricing() {
 
         //return pricingService.getAllCategoryList();
         return pricingService.findAll();
-    }
+    }*/
 
 
     @RequestMapping("/pricings/{id}")
-    public PricingEntity searchPricing(@PathVariable int  id){
+    public Optional<PricingEntity> searchPricing(@PathVariable int  id){
         //return categoryService.searchCategory(id);
         return pricingService.find(id);
     }
@@ -47,8 +47,8 @@ public class PricingController {
     }
 
     @RequestMapping("/pricings/update/{id}")
-    public void updateCategory(@RequestBody PricingEntity  pricing,@PathVariable int  pricingId) {
-        pricingService.updatePricing( pricingId, pricing);
+    public void updateCategory(@RequestBody PricingEntity  pricing) {
+        pricingService.updatePricing(pricing);
     }
 
     @RequestMapping("/pricings/delete/{id}")

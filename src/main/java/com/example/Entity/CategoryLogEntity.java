@@ -5,14 +5,15 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "category_log", schema = "ipay")
+@Table(name = "category_log", schema = "ipaytest2")
 public class CategoryLogEntity {
     private int categoryId;
     private String categoryName;
-    private String categoryCreatedUser;
-    private Timestamp categoryCreatedDateTime;
-    private String categoryModifiedUser;
-    private Timestamp categoryModifiedDateTime;
+    private String createdUser;
+    private Timestamp createdDateTime;
+    private String lastModifiedUser;
+    private Timestamp lastModifiedDateTime;
+    private Integer version;
 
     @Id
     @Column(name = "categoryId")
@@ -35,43 +36,53 @@ public class CategoryLogEntity {
     }
 
     @Basic
-    @Column(name = "categoryCreatedUser")
-    public String getCategoryCreatedUser() {
-        return categoryCreatedUser;
+    @Column(name = "CreatedUser")
+    public String getCreatedUser() {
+        return createdUser;
     }
 
-    public void setCategoryCreatedUser(String categoryCreatedUser) {
-        this.categoryCreatedUser = categoryCreatedUser;
-    }
-
-    @Basic
-    @Column(name = "categoryCreatedDateTime")
-    public Timestamp getCategoryCreatedDateTime() {
-        return categoryCreatedDateTime;
-    }
-
-    public void setCategoryCreatedDateTime(Timestamp categoryCreatedDateTime) {
-        this.categoryCreatedDateTime = categoryCreatedDateTime;
+    public void setCreatedUser(String createdUser) {
+        this.createdUser = createdUser;
     }
 
     @Basic
-    @Column(name = "categoryModifiedUser")
-    public String getCategoryModifiedUser() {
-        return categoryModifiedUser;
+    @Column(name = "CreatedDateTime")
+    public Timestamp getCreatedDateTime() {
+        return createdDateTime;
     }
 
-    public void setCategoryModifiedUser(String categoryModifiedUser) {
-        this.categoryModifiedUser = categoryModifiedUser;
+    public void setCreatedDateTime(Timestamp createdDateTime) {
+        this.createdDateTime = createdDateTime;
     }
 
     @Basic
-    @Column(name = "categoryModifiedDateTime")
-    public Timestamp getCategoryModifiedDateTime() {
-        return categoryModifiedDateTime;
+    @Column(name = "LastModifiedUser")
+    public String getLastModifiedUser() {
+        return lastModifiedUser;
     }
 
-    public void setCategoryModifiedDateTime(Timestamp categoryModifiedDateTime) {
-        this.categoryModifiedDateTime = categoryModifiedDateTime;
+    public void setLastModifiedUser(String lastModifiedUser) {
+        this.lastModifiedUser = lastModifiedUser;
+    }
+
+    @Basic
+    @Column(name = "LastModifiedDateTime")
+    public Timestamp getLastModifiedDateTime() {
+        return lastModifiedDateTime;
+    }
+
+    public void setLastModifiedDateTime(Timestamp lastModifiedDateTime) {
+        this.lastModifiedDateTime = lastModifiedDateTime;
+    }
+
+    @Basic
+    @Column(name = "VERSION")
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     @Override
@@ -81,15 +92,16 @@ public class CategoryLogEntity {
         CategoryLogEntity that = (CategoryLogEntity) o;
         return categoryId == that.categoryId &&
                 Objects.equals(categoryName, that.categoryName) &&
-                Objects.equals(categoryCreatedUser, that.categoryCreatedUser) &&
-                Objects.equals(categoryCreatedDateTime, that.categoryCreatedDateTime) &&
-                Objects.equals(categoryModifiedUser, that.categoryModifiedUser) &&
-                Objects.equals(categoryModifiedDateTime, that.categoryModifiedDateTime);
+                Objects.equals(createdUser, that.createdUser) &&
+                Objects.equals(createdDateTime, that.createdDateTime) &&
+                Objects.equals(lastModifiedUser, that.lastModifiedUser) &&
+                Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime) &&
+                Objects.equals(version, that.version);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(categoryId, categoryName, categoryCreatedUser, categoryCreatedDateTime, categoryModifiedUser, categoryModifiedDateTime);
+        return Objects.hash(categoryId, categoryName, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
     }
 }

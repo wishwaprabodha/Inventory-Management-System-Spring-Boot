@@ -6,17 +6,18 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "pricing_log", schema = "ipay")
+@Table(name = "pricing_log", schema = "ipaytest2")
 public class PricingLogEntity {
     private int pricingId;
     private String pricingName;
     private Integer pricingDiscountPrecentage;
     private Date pricingEffectiveDate;
     private Date pricingExpireDate;
-    private String pricingCreatedUser;
-    private Timestamp pricingCreatedDateTime;
-    private String pricingModifiedUser;
-    private Timestamp pricingModifiedDateTime;
+    private String createdUser;
+    private Timestamp createdDateTime;
+    private String lastModifiedUser;
+    private Timestamp lastModifiedDateTime;
+    private Integer version;
 
     @Id
     @Column(name = "pricingId")
@@ -69,43 +70,53 @@ public class PricingLogEntity {
     }
 
     @Basic
-    @Column(name = "pricingCreatedUser")
-    public String getPricingCreatedUser() {
-        return pricingCreatedUser;
+    @Column(name = "CreatedUser")
+    public String getCreatedUser() {
+        return createdUser;
     }
 
-    public void setPricingCreatedUser(String pricingCreatedUser) {
-        this.pricingCreatedUser = pricingCreatedUser;
-    }
-
-    @Basic
-    @Column(name = "pricingCreatedDateTime")
-    public Timestamp getPricingCreatedDateTime() {
-        return pricingCreatedDateTime;
-    }
-
-    public void setPricingCreatedDateTime(Timestamp pricingCreatedDateTime) {
-        this.pricingCreatedDateTime = pricingCreatedDateTime;
+    public void setCreatedUser(String createdUser) {
+        this.createdUser = createdUser;
     }
 
     @Basic
-    @Column(name = "pricingModifiedUser")
-    public String getPricingModifiedUser() {
-        return pricingModifiedUser;
+    @Column(name = "CreatedDateTime")
+    public Timestamp getCreatedDateTime() {
+        return createdDateTime;
     }
 
-    public void setPricingModifiedUser(String pricingModifiedUser) {
-        this.pricingModifiedUser = pricingModifiedUser;
+    public void setCreatedDateTime(Timestamp createdDateTime) {
+        this.createdDateTime = createdDateTime;
     }
 
     @Basic
-    @Column(name = "pricingModifiedDateTime")
-    public Timestamp getPricingModifiedDateTime() {
-        return pricingModifiedDateTime;
+    @Column(name = "LastModifiedUser")
+    public String getLastModifiedUser() {
+        return lastModifiedUser;
     }
 
-    public void setPricingModifiedDateTime(Timestamp pricingModifiedDateTime) {
-        this.pricingModifiedDateTime = pricingModifiedDateTime;
+    public void setLastModifiedUser(String lastModifiedUser) {
+        this.lastModifiedUser = lastModifiedUser;
+    }
+
+    @Basic
+    @Column(name = "LastModifiedDateTime")
+    public Timestamp getLastModifiedDateTime() {
+        return lastModifiedDateTime;
+    }
+
+    public void setLastModifiedDateTime(Timestamp lastModifiedDateTime) {
+        this.lastModifiedDateTime = lastModifiedDateTime;
+    }
+
+    @Basic
+    @Column(name = "VERSION")
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     @Override
@@ -118,15 +129,16 @@ public class PricingLogEntity {
                 Objects.equals(pricingDiscountPrecentage, that.pricingDiscountPrecentage) &&
                 Objects.equals(pricingEffectiveDate, that.pricingEffectiveDate) &&
                 Objects.equals(pricingExpireDate, that.pricingExpireDate) &&
-                Objects.equals(pricingCreatedUser, that.pricingCreatedUser) &&
-                Objects.equals(pricingCreatedDateTime, that.pricingCreatedDateTime) &&
-                Objects.equals(pricingModifiedUser, that.pricingModifiedUser) &&
-                Objects.equals(pricingModifiedDateTime, that.pricingModifiedDateTime);
+                Objects.equals(createdUser, that.createdUser) &&
+                Objects.equals(createdDateTime, that.createdDateTime) &&
+                Objects.equals(lastModifiedUser, that.lastModifiedUser) &&
+                Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime) &&
+                Objects.equals(version, that.version);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(pricingId, pricingName, pricingDiscountPrecentage, pricingEffectiveDate, pricingExpireDate, pricingCreatedUser, pricingCreatedDateTime, pricingModifiedUser, pricingModifiedDateTime);
+        return Objects.hash(pricingId, pricingName, pricingDiscountPrecentage, pricingEffectiveDate, pricingExpireDate, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
     }
 }

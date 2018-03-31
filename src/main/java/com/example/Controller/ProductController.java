@@ -6,7 +6,7 @@ import com.example.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Wishwa Prabodha on 3/23/2018.
@@ -20,16 +20,16 @@ public class ProductController {
     @Autowired
     public ProductService productService;
 
-    @RequestMapping("")
+   /* @RequestMapping("")
     public List<ProductEntity> getAllProducts() {
 
         //return productService.getAllProductList();
         return productService.findAll();
-    }
+    }*/
 
 
     @RequestMapping("/{id}")
-    public ProductEntity searchProduct(@PathVariable int  id){
+    public Optional<ProductEntity> searchProduct(@PathVariable int  id){
         //return productService.searchProduct(id);
         return productService.find(id);
     }
@@ -43,8 +43,8 @@ public class ProductController {
         }
 
     @RequestMapping("/update/{id}")
-    public void updateProduct(@RequestBody ProductEntity product,@PathVariable int produtId) {
-        productService.updateProduct(produtId,product);
+    public void updateProduct(@RequestBody ProductEntity product) {
+        productService.updateProduct(product);
     }
 
     @RequestMapping("/delete/{id}")

@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "stock", schema = "ipay")
+@Table(name = "stock", schema = "ipaytest2")
 public class StockEntity {
     private int refId;
     private Integer stockId;
@@ -15,10 +15,12 @@ public class StockEntity {
     private Integer categoryId;
     private Integer quantity;
     private Date dateStock;
-    private String stockCreatedUser;
-    private Timestamp stockCreatedDateTime;
-    private String stockModifiedUser;
-    private Timestamp stockModifiedDateTime;
+    private String createdUser;
+    private Timestamp createdDateTime;
+    private String lastModifiedUser;
+    private Timestamp lastModifiedDateTime;
+    private String branchId;
+    private Integer version;
     private SupplierEntity supplierBySupplierId;
     private ProductEntity productByProductId;
     private CategoryEntity categoryByCategoryId;
@@ -94,43 +96,63 @@ public class StockEntity {
     }
 
     @Basic
-    @Column(name = "stockCreatedUser")
-    public String getStockCreatedUser() {
-        return stockCreatedUser;
+    @Column(name = "CreatedUser")
+    public String getCreatedUser() {
+        return createdUser;
     }
 
-    public void setStockCreatedUser(String stockCreatedUser) {
-        this.stockCreatedUser = stockCreatedUser;
-    }
-
-    @Basic
-    @Column(name = "stockCreatedDateTime")
-    public Timestamp getStockCreatedDateTime() {
-        return stockCreatedDateTime;
-    }
-
-    public void setStockCreatedDateTime(Timestamp stockCreatedDateTime) {
-        this.stockCreatedDateTime = stockCreatedDateTime;
+    public void setCreatedUser(String createdUser) {
+        this.createdUser = createdUser;
     }
 
     @Basic
-    @Column(name = "stockModifiedUser")
-    public String getStockModifiedUser() {
-        return stockModifiedUser;
+    @Column(name = "CreatedDateTime")
+    public Timestamp getCreatedDateTime() {
+        return createdDateTime;
     }
 
-    public void setStockModifiedUser(String stockModifiedUser) {
-        this.stockModifiedUser = stockModifiedUser;
+    public void setCreatedDateTime(Timestamp createdDateTime) {
+        this.createdDateTime = createdDateTime;
     }
 
     @Basic
-    @Column(name = "stockModifiedDateTime")
-    public Timestamp getStockModifiedDateTime() {
-        return stockModifiedDateTime;
+    @Column(name = "LastModifiedUser")
+    public String getLastModifiedUser() {
+        return lastModifiedUser;
     }
 
-    public void setStockModifiedDateTime(Timestamp stockModifiedDateTime) {
-        this.stockModifiedDateTime = stockModifiedDateTime;
+    public void setLastModifiedUser(String lastModifiedUser) {
+        this.lastModifiedUser = lastModifiedUser;
+    }
+
+    @Basic
+    @Column(name = "LastModifiedDateTime")
+    public Timestamp getLastModifiedDateTime() {
+        return lastModifiedDateTime;
+    }
+
+    public void setLastModifiedDateTime(Timestamp lastModifiedDateTime) {
+        this.lastModifiedDateTime = lastModifiedDateTime;
+    }
+
+    @Basic
+    @Column(name = "branchId")
+    public String getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(String branchId) {
+        this.branchId = branchId;
+    }
+
+    @Basic
+    @Column(name = "VERSION")
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     @Override
@@ -145,16 +167,18 @@ public class StockEntity {
                 Objects.equals(categoryId, that.categoryId) &&
                 Objects.equals(quantity, that.quantity) &&
                 Objects.equals(dateStock, that.dateStock) &&
-                Objects.equals(stockCreatedUser, that.stockCreatedUser) &&
-                Objects.equals(stockCreatedDateTime, that.stockCreatedDateTime) &&
-                Objects.equals(stockModifiedUser, that.stockModifiedUser) &&
-                Objects.equals(stockModifiedDateTime, that.stockModifiedDateTime);
+                Objects.equals(createdUser, that.createdUser) &&
+                Objects.equals(createdDateTime, that.createdDateTime) &&
+                Objects.equals(lastModifiedUser, that.lastModifiedUser) &&
+                Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime) &&
+                Objects.equals(branchId, that.branchId) &&
+                Objects.equals(version, that.version);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(refId, stockId, supplierId, productId, categoryId, quantity, dateStock, stockCreatedUser, stockCreatedDateTime, stockModifiedUser, stockModifiedDateTime);
+        return Objects.hash(refId, stockId, supplierId, productId, categoryId, quantity, dateStock, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, branchId, version);
     }
 
     @ManyToOne

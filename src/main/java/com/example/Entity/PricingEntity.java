@@ -7,27 +7,27 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "pricing", schema = "ipay")
+@Table(name = "pricing", schema = "ipaytest2")
 public class PricingEntity {
-    private int pricingId;
+    private Integer pricingId;
     private String pricingName;
     private Integer pricingDiscountPrecentage;
     private Date pricingEffectiveDate;
     private Date pricingExpireDate;
-    private String pricingCreatedUser;
-    private Timestamp pricingCreatedDateTime;
-    private String pricingModifiedUser;
-    private Timestamp pricingModifiedDateTime;
-    private Collection<ProductEntity> productsByPricingId;
-    private Collection<ProductLogEntity> productLogsByPricingId;
+    private String createdUser;
+    private Timestamp createdDateTime;
+    private String lastModifiedUser;
+    private Timestamp lastModifiedDateTime;
+    private Integer version;
+    private Collection<ProductPricingEntity> productPricingsByPricingId;
 
     @Id
     @Column(name = "pricingId")
-    public int getPricingId() {
+    public Integer getPricingId() {
         return pricingId;
     }
 
-    public void setPricingId(int pricingId) {
+    public void setPricingId(Integer pricingId) {
         this.pricingId = pricingId;
     }
 
@@ -72,43 +72,53 @@ public class PricingEntity {
     }
 
     @Basic
-    @Column(name = "pricingCreatedUser")
-    public String getPricingCreatedUser() {
-        return pricingCreatedUser;
+    @Column(name = "CreatedUser")
+    public String getCreatedUser() {
+        return createdUser;
     }
 
-    public void setPricingCreatedUser(String pricingCreatedUser) {
-        this.pricingCreatedUser = pricingCreatedUser;
-    }
-
-    @Basic
-    @Column(name = "pricingCreatedDateTime")
-    public Timestamp getPricingCreatedDateTime() {
-        return pricingCreatedDateTime;
-    }
-
-    public void setPricingCreatedDateTime(Timestamp pricingCreatedDateTime) {
-        this.pricingCreatedDateTime = pricingCreatedDateTime;
+    public void setCreatedUser(String createdUser) {
+        this.createdUser = createdUser;
     }
 
     @Basic
-    @Column(name = "pricingModifiedUser")
-    public String getPricingModifiedUser() {
-        return pricingModifiedUser;
+    @Column(name = "CreatedDateTime")
+    public Timestamp getCreatedDateTime() {
+        return createdDateTime;
     }
 
-    public void setPricingModifiedUser(String pricingModifiedUser) {
-        this.pricingModifiedUser = pricingModifiedUser;
+    public void setCreatedDateTime(Timestamp createdDateTime) {
+        this.createdDateTime = createdDateTime;
     }
 
     @Basic
-    @Column(name = "pricingModifiedDateTime")
-    public Timestamp getPricingModifiedDateTime() {
-        return pricingModifiedDateTime;
+    @Column(name = "LastModifiedUser")
+    public String getLastModifiedUser() {
+        return lastModifiedUser;
     }
 
-    public void setPricingModifiedDateTime(Timestamp pricingModifiedDateTime) {
-        this.pricingModifiedDateTime = pricingModifiedDateTime;
+    public void setLastModifiedUser(String lastModifiedUser) {
+        this.lastModifiedUser = lastModifiedUser;
+    }
+
+    @Basic
+    @Column(name = "LastModifiedDateTime")
+    public Timestamp getLastModifiedDateTime() {
+        return lastModifiedDateTime;
+    }
+
+    public void setLastModifiedDateTime(Timestamp lastModifiedDateTime) {
+        this.lastModifiedDateTime = lastModifiedDateTime;
+    }
+
+    @Basic
+    @Column(name = "VERSION")
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     @Override
@@ -121,33 +131,43 @@ public class PricingEntity {
                 Objects.equals(pricingDiscountPrecentage, that.pricingDiscountPrecentage) &&
                 Objects.equals(pricingEffectiveDate, that.pricingEffectiveDate) &&
                 Objects.equals(pricingExpireDate, that.pricingExpireDate) &&
-                Objects.equals(pricingCreatedUser, that.pricingCreatedUser) &&
-                Objects.equals(pricingCreatedDateTime, that.pricingCreatedDateTime) &&
-                Objects.equals(pricingModifiedUser, that.pricingModifiedUser) &&
-                Objects.equals(pricingModifiedDateTime, that.pricingModifiedDateTime);
+                Objects.equals(createdUser, that.createdUser) &&
+                Objects.equals(createdDateTime, that.createdDateTime) &&
+                Objects.equals(lastModifiedUser, that.lastModifiedUser) &&
+                Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime) &&
+                Objects.equals(version, that.version);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(pricingId, pricingName, pricingDiscountPrecentage, pricingEffectiveDate, pricingExpireDate, pricingCreatedUser, pricingCreatedDateTime, pricingModifiedUser, pricingModifiedDateTime);
+        return Objects.hash(pricingId, pricingName, pricingDiscountPrecentage, pricingEffectiveDate, pricingExpireDate, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
     }
 
-    @OneToMany(mappedBy = "pricingByPricingId")
-    public Collection<ProductEntity> getProductsByPricingId() {
-        return productsByPricingId;
+    @OneToMany(mappedBy = "pricingByPricingPricingId")
+    public Collection<ProductPricingEntity> getProductPricingsByPricingId() {
+        return productPricingsByPricingId;
     }
 
-    public void setProductsByPricingId(Collection<ProductEntity> productsByPricingId) {
-        this.productsByPricingId = productsByPricingId;
+    public void setProductPricingsByPricingId(Collection<ProductPricingEntity> productPricingsByPricingId) {
+        this.productPricingsByPricingId = productPricingsByPricingId;
     }
 
-    @OneToMany(mappedBy = "pricingByPricingId")
-    public Collection<ProductLogEntity> getProductLogsByPricingId() {
-        return productLogsByPricingId;
+    public PricingEntity(Integer pricingId, String pricingName, Integer pricingDiscountPrecentage, Date pricingEffectiveDate, Date pricingExpireDate, String createdUser, Timestamp createdDateTime, String lastModifiedUser, Timestamp lastModifiedDateTime,
+                         Integer version, Collection<ProductPricingEntity> productPricingsByPricingId) {
+        this.pricingId = pricingId;
+        this.pricingName = pricingName;
+        this.pricingDiscountPrecentage = pricingDiscountPrecentage;
+        this.pricingEffectiveDate = pricingEffectiveDate;
+        this.pricingExpireDate = pricingExpireDate;
+        this.createdUser = createdUser;
+        this.createdDateTime = createdDateTime;
+        this.lastModifiedUser = lastModifiedUser;
+        this.lastModifiedDateTime = lastModifiedDateTime;
+        this.version = version;
+        this.productPricingsByPricingId = productPricingsByPricingId;
     }
 
-    public void setProductLogsByPricingId(Collection<ProductLogEntity> productLogsByPricingId) {
-        this.productLogsByPricingId = productLogsByPricingId;
+    public PricingEntity() {
     }
 }

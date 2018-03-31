@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "product_log", schema = "ipay")
+@Table(name = "product_log", schema = "ipaytest2")
 public class ProductLogEntity {
     private int productId;
     private String productName;
@@ -14,12 +14,11 @@ public class ProductLogEntity {
     private Double productsellingPrice;
     private Integer pricingId;
     private Integer categoryId;
-    private String productCreatedUser;
-    private Timestamp productCreatedDateTime;
-    private String productModifiedUser;
-    private Timestamp productModifiedDateTime;
-    private PricingEntity pricingByPricingId;
-    private CategoryEntity categoryByCategoryId;
+    private String createdUser;
+    private Timestamp createdDateTime;
+    private String lastModifiedUser;
+    private Timestamp lastModifiedDateTime;
+    private Integer version;
 
     @Id
     @Column(name = "productId")
@@ -92,43 +91,53 @@ public class ProductLogEntity {
     }
 
     @Basic
-    @Column(name = "productCreatedUser")
-    public String getProductCreatedUser() {
-        return productCreatedUser;
+    @Column(name = "CreatedUser")
+    public String getCreatedUser() {
+        return createdUser;
     }
 
-    public void setProductCreatedUser(String productCreatedUser) {
-        this.productCreatedUser = productCreatedUser;
-    }
-
-    @Basic
-    @Column(name = "productCreatedDateTime")
-    public Timestamp getProductCreatedDateTime() {
-        return productCreatedDateTime;
-    }
-
-    public void setProductCreatedDateTime(Timestamp productCreatedDateTime) {
-        this.productCreatedDateTime = productCreatedDateTime;
+    public void setCreatedUser(String createdUser) {
+        this.createdUser = createdUser;
     }
 
     @Basic
-    @Column(name = "productModifiedUser")
-    public String getProductModifiedUser() {
-        return productModifiedUser;
+    @Column(name = "CreatedDateTime")
+    public Timestamp getCreatedDateTime() {
+        return createdDateTime;
     }
 
-    public void setProductModifiedUser(String productModifiedUser) {
-        this.productModifiedUser = productModifiedUser;
+    public void setCreatedDateTime(Timestamp createdDateTime) {
+        this.createdDateTime = createdDateTime;
     }
 
     @Basic
-    @Column(name = "productModifiedDateTime")
-    public Timestamp getProductModifiedDateTime() {
-        return productModifiedDateTime;
+    @Column(name = "LastModifiedUser")
+    public String getLastModifiedUser() {
+        return lastModifiedUser;
     }
 
-    public void setProductModifiedDateTime(Timestamp productModifiedDateTime) {
-        this.productModifiedDateTime = productModifiedDateTime;
+    public void setLastModifiedUser(String lastModifiedUser) {
+        this.lastModifiedUser = lastModifiedUser;
+    }
+
+    @Basic
+    @Column(name = "LastModifiedDateTime")
+    public Timestamp getLastModifiedDateTime() {
+        return lastModifiedDateTime;
+    }
+
+    public void setLastModifiedDateTime(Timestamp lastModifiedDateTime) {
+        this.lastModifiedDateTime = lastModifiedDateTime;
+    }
+
+    @Basic
+    @Column(name = "VERSION")
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     @Override
@@ -143,35 +152,16 @@ public class ProductLogEntity {
                 Objects.equals(productsellingPrice, that.productsellingPrice) &&
                 Objects.equals(pricingId, that.pricingId) &&
                 Objects.equals(categoryId, that.categoryId) &&
-                Objects.equals(productCreatedUser, that.productCreatedUser) &&
-                Objects.equals(productCreatedDateTime, that.productCreatedDateTime) &&
-                Objects.equals(productModifiedUser, that.productModifiedUser) &&
-                Objects.equals(productModifiedDateTime, that.productModifiedDateTime);
+                Objects.equals(createdUser, that.createdUser) &&
+                Objects.equals(createdDateTime, that.createdDateTime) &&
+                Objects.equals(lastModifiedUser, that.lastModifiedUser) &&
+                Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime) &&
+                Objects.equals(version, that.version);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(productId, productName, productIsService, productbuyingPrice, productsellingPrice, pricingId, categoryId, productCreatedUser, productCreatedDateTime, productModifiedUser, productModifiedDateTime);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "pricingId", referencedColumnName = "pricingId")
-    public PricingEntity getPricingByPricingId() {
-        return pricingByPricingId;
-    }
-
-    public void setPricingByPricingId(PricingEntity pricingByPricingId) {
-        this.pricingByPricingId = pricingByPricingId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "categoryId", referencedColumnName = "categoryId")
-    public CategoryEntity getCategoryByCategoryId() {
-        return categoryByCategoryId;
-    }
-
-    public void setCategoryByCategoryId(CategoryEntity categoryByCategoryId) {
-        this.categoryByCategoryId = categoryByCategoryId;
+        return Objects.hash(productId, productName, productIsService, productbuyingPrice, productsellingPrice, pricingId, categoryId, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
     }
 }
