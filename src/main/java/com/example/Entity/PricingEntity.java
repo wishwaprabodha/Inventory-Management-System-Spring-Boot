@@ -21,6 +21,24 @@ public class PricingEntity {
     private Integer version;
     private Collection<ProductPricingEntity> productPricingsByPricingId;
 
+    public PricingEntity(Integer pricingId, String pricingName, Integer pricingDiscountPrecentage, Date pricingEffectiveDate, Date pricingExpireDate, String createdUser, Timestamp createdDateTime, String lastModifiedUser, Timestamp lastModifiedDateTime,
+                         Integer version, Collection<ProductPricingEntity> productPricingsByPricingId) {
+        this.pricingId = pricingId;
+        this.pricingName = pricingName;
+        this.pricingDiscountPrecentage = pricingDiscountPrecentage;
+        this.pricingEffectiveDate = pricingEffectiveDate;
+        this.pricingExpireDate = pricingExpireDate;
+        this.createdUser = createdUser;
+        this.createdDateTime = createdDateTime;
+        this.lastModifiedUser = lastModifiedUser;
+        this.lastModifiedDateTime = lastModifiedDateTime;
+        this.version = version;
+        this.productPricingsByPricingId = productPricingsByPricingId;
+    }
+
+    public PricingEntity() {
+    }
+
     @Id
     @Column(name = "pricingId")
     public Integer getPricingId() {
@@ -151,23 +169,5 @@ public class PricingEntity {
 
     public void setProductPricingsByPricingId(Collection<ProductPricingEntity> productPricingsByPricingId) {
         this.productPricingsByPricingId = productPricingsByPricingId;
-    }
-
-    public PricingEntity(Integer pricingId, String pricingName, Integer pricingDiscountPrecentage, Date pricingEffectiveDate, Date pricingExpireDate, String createdUser, Timestamp createdDateTime, String lastModifiedUser, Timestamp lastModifiedDateTime,
-                         Integer version, Collection<ProductPricingEntity> productPricingsByPricingId) {
-        this.pricingId = pricingId;
-        this.pricingName = pricingName;
-        this.pricingDiscountPrecentage = pricingDiscountPrecentage;
-        this.pricingEffectiveDate = pricingEffectiveDate;
-        this.pricingExpireDate = pricingExpireDate;
-        this.createdUser = createdUser;
-        this.createdDateTime = createdDateTime;
-        this.lastModifiedUser = lastModifiedUser;
-        this.lastModifiedDateTime = lastModifiedDateTime;
-        this.version = version;
-        this.productPricingsByPricingId = productPricingsByPricingId;
-    }
-
-    public PricingEntity() {
     }
 }

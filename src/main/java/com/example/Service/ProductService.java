@@ -1,7 +1,7 @@
 package com.example.Service;
 
-import com.example.Repository.ProductRepository;
 import com.example.Entity.ProductEntity;
+import com.example.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +20,12 @@ public class ProductService {
     @Autowired
     public ProductRepository productRepository;
 
-        //Return type confliction,changed to void
+    //Return type confliction,changed to void
     public void insert(ProductEntity product) {
         productRepository.save(product);
     }
 
-    public Optional<ProductEntity> find(int  id) {
+    public Optional<ProductEntity> find(int id) {
         return productRepository.findById(id);
     }
 
@@ -44,12 +44,12 @@ public class ProductService {
         return productDAO.findById(id);
     }*/
 
-    public void updateProduct(ProductEntity product){
+    public void updateProduct(ProductEntity product) {
 
         productRepository.save(product);
     }
 
-    public void deleteProduct(int  id){
+    public void deleteProduct(int id) {
 
         productRepository.deleteById(id);
     }

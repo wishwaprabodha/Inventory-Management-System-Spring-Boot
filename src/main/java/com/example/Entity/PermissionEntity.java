@@ -41,8 +41,6 @@ public class PermissionEntity {
     }
 
 
-
-
     @Override
     public int hashCode() {
 

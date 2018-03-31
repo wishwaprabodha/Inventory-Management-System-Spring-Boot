@@ -13,8 +13,8 @@ import java.util.Optional;
 
 /**
  * Because of the Business Entity confliction we have to consider that pricing
-        happens on each product wise and not generalized for entities.
-*/
+ * happens on each product wise and not generalized for entities.
+ */
 
 @RestController
 @RequestMapping("/categories/{id}/products/{id}")
@@ -34,26 +34,26 @@ public class PricingController {
 
 
     @RequestMapping("/pricings/{id}")
-    public Optional<PricingEntity> searchPricing(@PathVariable int  id){
+    public Optional<PricingEntity> searchPricing(@PathVariable int id) {
         //return categoryService.searchCategory(id);
         return pricingService.find(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST,value = "")
-    public void addPricing(@RequestBody PricingEntity  pricing) {
+    @RequestMapping(method = RequestMethod.POST, value = "")
+    public void addPricing(@RequestBody PricingEntity pricing) {
 
         //categoryService.addCategory(category);
-        pricingService.insert( pricing);
+        pricingService.insert(pricing);
     }
 
     @RequestMapping("/pricings/update/{id}")
-    public void updateCategory(@RequestBody PricingEntity  pricing) {
+    public void updateCategory(@RequestBody PricingEntity pricing) {
         pricingService.updatePricing(pricing);
     }
 
     @RequestMapping("/pricings/delete/{id}")
-    public void deletePricing(int  pricingId) {
-        pricingService.deletePricing( pricingId);
+    public void deletePricing(int pricingId) {
+        pricingService.deletePricing(pricingId);
     }
 
 

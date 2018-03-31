@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Transactional
 @Service
-public class XategoryService {
+public class CategoryService {
 
     @Autowired
     private XategoryRepository xategoryRepository;
@@ -39,18 +39,18 @@ public class XategoryService {
         return findAll();
     }
 
-        //Implemented already
+    //Implemented already
    /* public void addCategory(CategoryEntity categoryNew){
         categoryDAO.addCategory(categoryNew);
     }*/
 
 
-    public void updateCategory(int  id,CategoryEntity category){
+    public void updateCategory(int id, CategoryEntity category) {
 
         xategoryRepository.save(category);
     }
 
-    public void deleteCategory(int  id){
+    public void deleteCategory(int id) {
 
         xategoryRepository.deleteById(id);
     }

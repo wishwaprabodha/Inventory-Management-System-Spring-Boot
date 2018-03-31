@@ -29,18 +29,18 @@ public class ProductController {
 
 
     @RequestMapping("/{id}")
-    public Optional<ProductEntity> searchProduct(@PathVariable int  id){
+    public Optional<ProductEntity> searchProduct(@PathVariable int id) {
         //return productService.searchProduct(id);
         return productService.find(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST,value = "")
-    public void addProduct(@RequestBody ProductEntity product,@RequestBody CategoryEntity category) {
+    @RequestMapping(method = RequestMethod.POST, value = "")
+    public void addProduct(@RequestBody ProductEntity product, @RequestBody CategoryEntity category) {
 
         //productService.addProduct(product);
         product.setCategoryByCategoryId(category);
         productService.insert(product);
-        }
+    }
 
     @RequestMapping("/update/{id}")
     public void updateProduct(@RequestBody ProductEntity product) {
