@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * Created by Wishwa Prabodha on 3/27/2018.
  */
 @Repository
-public interface XategoryRepository extends CrudRepository<CategoryEntity, Integer> {
+public interface CategoryRepository extends CrudRepository<CategoryEntity, Integer> {
 
 
 }

@@ -20,12 +20,12 @@ public class CategoryController {
     public CategoryService categoryService;
 
 
-   /* @RequestMapping("")
-    public List<CategoryEntity> getAllCategory() {
+    @RequestMapping("")
+    public Iterable<CategoryEntity> getAllCategory() {
 
         //return categoryService.getAllCategoryList();
         return categoryService.findAll();
-    }*/
+    }
 
 
     @RequestMapping("/{id}")

@@ -1,7 +1,7 @@
 package com.example.Service;
 
 import com.example.Entity.CategoryEntity;
-import com.example.Repository.XategoryRepository;
+import com.example.Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,24 +19,24 @@ import java.util.Optional;
 public class CategoryService {
 
     @Autowired
-    private XategoryRepository xategoryRepository;
+    private CategoryRepository categoryRepository;
 
     public int insert(CategoryEntity category) {
         //entityManager.persist(category);
 
-        xategoryRepository.save(category);
+        categoryRepository.save(category);
         return category.getCategoryId();
     }
 
 
     public Optional<CategoryEntity> findById(int id) {
-        return xategoryRepository.findById(id);
+        return categoryRepository.findById(id);
         //return entityManager.find(CategoryEntity.class, id);
     }
 
-    public List<CategoryEntity> findAll() {
+    public Iterable<CategoryEntity> findAll() {
         //Query query = entityManager.createNamedQuery("Category.add",CategoryEntity.class);
-        return findAll();
+        return categoryRepository.findAll();
     }
 
     //Implemented already
@@ -47,12 +47,12 @@ public class CategoryService {
 
     public void updateCategory(int id, CategoryEntity category) {
 
-        xategoryRepository.save(category);
+        categoryRepository.save(category);
     }
 
     public void deleteCategory(int id) {
 
-        xategoryRepository.deleteById(id);
+        categoryRepository.deleteById(id);
     }
 
 
