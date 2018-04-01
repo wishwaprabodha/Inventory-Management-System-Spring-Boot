@@ -4,13 +4,11 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "role_permission", schema = "ipaytest2")
+@Table(name = "role_permission", schema = "ipaytest2", catalog = "")
 public class RolePermissionEntity {
     private int refId;
     private int roleRoleId;
     private int permissionPermissionId;
-    private RoleEntity roleByRoleRoleId;
-    private PermissionEntity permissionByPermissionPermissionId;
 
     @Id
     @Column(name = "refId")
@@ -56,25 +54,5 @@ public class RolePermissionEntity {
     public int hashCode() {
 
         return Objects.hash(refId, roleRoleId, permissionPermissionId);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "role_roleId", referencedColumnName = "roleId", nullable = false)
-    public RoleEntity getRoleByRoleRoleId() {
-        return roleByRoleRoleId;
-    }
-
-    public void setRoleByRoleRoleId(RoleEntity roleByRoleRoleId) {
-        this.roleByRoleRoleId = roleByRoleRoleId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "permission_permissionId", referencedColumnName = "permissionId", nullable = false)
-    public PermissionEntity getPermissionByPermissionPermissionId() {
-        return permissionByPermissionPermissionId;
-    }
-
-    public void setPermissionByPermissionPermissionId(PermissionEntity permissionByPermissionPermissionId) {
-        this.permissionByPermissionPermissionId = permissionByPermissionPermissionId;
     }
 }

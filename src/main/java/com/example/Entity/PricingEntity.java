@@ -3,13 +3,12 @@ package com.example.Entity;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "pricing", schema = "ipaytest2")
+@Table(name = "pricing", schema = "ipaytest2", catalog = "")
 public class PricingEntity {
-    private Integer pricingId;
+    private int pricingId;
     private String pricingName;
     private Integer pricingDiscountPrecentage;
     private Date pricingEffectiveDate;
@@ -19,33 +18,14 @@ public class PricingEntity {
     private String lastModifiedUser;
     private Timestamp lastModifiedDateTime;
     private Integer version;
-    private Collection<ProductPricingEntity> productPricingsByPricingId;
-
-    public PricingEntity(Integer pricingId, String pricingName, Integer pricingDiscountPrecentage, Date pricingEffectiveDate, Date pricingExpireDate, String createdUser, Timestamp createdDateTime, String lastModifiedUser, Timestamp lastModifiedDateTime,
-                         Integer version, Collection<ProductPricingEntity> productPricingsByPricingId) {
-        this.pricingId = pricingId;
-        this.pricingName = pricingName;
-        this.pricingDiscountPrecentage = pricingDiscountPrecentage;
-        this.pricingEffectiveDate = pricingEffectiveDate;
-        this.pricingExpireDate = pricingExpireDate;
-        this.createdUser = createdUser;
-        this.createdDateTime = createdDateTime;
-        this.lastModifiedUser = lastModifiedUser;
-        this.lastModifiedDateTime = lastModifiedDateTime;
-        this.version = version;
-        this.productPricingsByPricingId = productPricingsByPricingId;
-    }
-
-    public PricingEntity() {
-    }
 
     @Id
     @Column(name = "pricingId")
-    public Integer getPricingId() {
+    public int getPricingId() {
         return pricingId;
     }
 
-    public void setPricingId(Integer pricingId) {
+    public void setPricingId(int pricingId) {
         this.pricingId = pricingId;
     }
 
@@ -160,14 +140,5 @@ public class PricingEntity {
     public int hashCode() {
 
         return Objects.hash(pricingId, pricingName, pricingDiscountPrecentage, pricingEffectiveDate, pricingExpireDate, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
-    }
-
-    @OneToMany(mappedBy = "pricingByPricingPricingId")
-    public Collection<ProductPricingEntity> getProductPricingsByPricingId() {
-        return productPricingsByPricingId;
-    }
-
-    public void setProductPricingsByPricingId(Collection<ProductPricingEntity> productPricingsByPricingId) {
-        this.productPricingsByPricingId = productPricingsByPricingId;
     }
 }

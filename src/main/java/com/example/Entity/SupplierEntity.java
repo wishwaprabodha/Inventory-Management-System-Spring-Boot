@@ -2,11 +2,10 @@ package com.example.Entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "supplier", schema = "ipaytest2")
+@Table(name = "supplier", schema = "ipaytest2", catalog = "")
 public class SupplierEntity {
     private int supplierId;
     private String supplierName;
@@ -17,7 +16,6 @@ public class SupplierEntity {
     private String lastModifiedUser;
     private Timestamp lastModifiedDateTime;
     private Integer version;
-    private Collection<StockEntity> stocksBySupplierId;
 
     @Id
     @Column(name = "supplierId")
@@ -129,14 +127,5 @@ public class SupplierEntity {
     public int hashCode() {
 
         return Objects.hash(supplierId, supplierName, supplierContact, supplierCompany, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
-    }
-
-    @OneToMany(mappedBy = "supplierBySupplierId")
-    public Collection<StockEntity> getStocksBySupplierId() {
-        return stocksBySupplierId;
-    }
-
-    public void setStocksBySupplierId(Collection<StockEntity> stocksBySupplierId) {
-        this.stocksBySupplierId = stocksBySupplierId;
     }
 }

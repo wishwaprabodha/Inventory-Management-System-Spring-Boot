@@ -2,11 +2,10 @@ package com.example.Entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user", schema = "ipaytest2")
+@Table(name = "user", schema = "ipaytest2", catalog = "")
 public class UserEntity {
     private int userId;
     private String userName;
@@ -20,7 +19,6 @@ public class UserEntity {
     private String lastModifiedUser;
     private Timestamp lastModifiedDateTime;
     private Integer version;
-    private Collection<UserRoleEntity> userRolesByUserId;
 
     @Id
     @Column(name = "userId")
@@ -165,14 +163,5 @@ public class UserEntity {
     public int hashCode() {
 
         return Objects.hash(userId, userName, userFname, userLname, userContactNumber, userEmail, userAddress, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
-    }
-
-    @OneToMany(mappedBy = "userByUserUserId")
-    public Collection<UserRoleEntity> getUserRolesByUserId() {
-        return userRolesByUserId;
-    }
-
-    public void setUserRolesByUserId(Collection<UserRoleEntity> userRolesByUserId) {
-        this.userRolesByUserId = userRolesByUserId;
     }
 }

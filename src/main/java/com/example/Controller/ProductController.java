@@ -1,6 +1,5 @@
 package com.example.Controller;
 
-import com.example.Entity.CategoryEntity;
 import com.example.Entity.ProductEntity;
 import com.example.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +33,14 @@ public class ProductController {
         return productService.find(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "")
-    public void addProduct(@RequestBody ProductEntity product, @RequestBody CategoryEntity category) {
-
-        //productService.addProduct(product);
-        product.setCategoryByCategoryId(category);
-        productService.insert(product);
-    }
+    // ToDo: Cant map request body with two entities (ProductEntity and CategoryEntity)
+//    @RequestMapping(method = RequestMethod.POST, value = "")
+//    public void addProduct(@RequestBody ProductEntity product, @RequestBody CategoryEntity category) {
+//
+//        //productService.addProduct(product);
+//        product.setCategoryByCategoryId(category);
+//        productService.insert(product);
+//    }
 
     @RequestMapping("/update/{id}")
     public void updateProduct(@RequestBody ProductEntity product) {

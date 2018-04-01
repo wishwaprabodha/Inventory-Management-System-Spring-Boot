@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "permission_log", schema = "ipaytest2")
+@Table(name = "permission_log", schema = "ipaytest2", catalog = "")
 public class PermissionLogEntity {
     private int permissionId;
     private String permissionName;

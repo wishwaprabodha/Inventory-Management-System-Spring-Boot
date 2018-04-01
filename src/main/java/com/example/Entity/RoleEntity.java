@@ -2,11 +2,10 @@ package com.example.Entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "role", schema = "ipaytest2")
+@Table(name = "role", schema = "ipaytest2", catalog = "")
 public class RoleEntity {
     private int roleId;
     private String roleName;
@@ -15,8 +14,6 @@ public class RoleEntity {
     private String lastModifiedUser;
     private Timestamp lastModifiedDateTime;
     private Integer version;
-    private Collection<RolePermissionEntity> rolePermissionsByRoleId;
-    private Collection<UserRoleEntity> userRolesByRoleId;
 
     @Id
     @Column(name = "roleId")
@@ -106,23 +103,5 @@ public class RoleEntity {
     public int hashCode() {
 
         return Objects.hash(roleId, roleName, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
-    }
-
-    @OneToMany(mappedBy = "roleByRoleRoleId")
-    public Collection<RolePermissionEntity> getRolePermissionsByRoleId() {
-        return rolePermissionsByRoleId;
-    }
-
-    public void setRolePermissionsByRoleId(Collection<RolePermissionEntity> rolePermissionsByRoleId) {
-        this.rolePermissionsByRoleId = rolePermissionsByRoleId;
-    }
-
-    @OneToMany(mappedBy = "roleByRoleRoleId")
-    public Collection<UserRoleEntity> getUserRolesByRoleId() {
-        return userRolesByRoleId;
-    }
-
-    public void setUserRolesByRoleId(Collection<UserRoleEntity> userRolesByRoleId) {
-        this.userRolesByRoleId = userRolesByRoleId;
     }
 }

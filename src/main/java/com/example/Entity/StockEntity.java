@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "stock", schema = "ipaytest2")
+@Table(name = "stock", schema = "ipaytest2", catalog = "")
 public class StockEntity {
     private int refId;
     private Integer stockId;
@@ -21,9 +21,6 @@ public class StockEntity {
     private Timestamp lastModifiedDateTime;
     private String branchId;
     private Integer version;
-    private SupplierEntity supplierBySupplierId;
-    private ProductEntity productByProductId;
-    private CategoryEntity categoryByCategoryId;
 
     @Id
     @Column(name = "refId")
@@ -179,35 +176,5 @@ public class StockEntity {
     public int hashCode() {
 
         return Objects.hash(refId, stockId, supplierId, productId, categoryId, quantity, dateStock, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, branchId, version);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "supplierId", referencedColumnName = "supplierId")
-    public SupplierEntity getSupplierBySupplierId() {
-        return supplierBySupplierId;
-    }
-
-    public void setSupplierBySupplierId(SupplierEntity supplierBySupplierId) {
-        this.supplierBySupplierId = supplierBySupplierId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "productId", referencedColumnName = "productId")
-    public ProductEntity getProductByProductId() {
-        return productByProductId;
-    }
-
-    public void setProductByProductId(ProductEntity productByProductId) {
-        this.productByProductId = productByProductId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "categoryId", referencedColumnName = "categoryId")
-    public CategoryEntity getCategoryByCategoryId() {
-        return categoryByCategoryId;
-    }
-
-    public void setCategoryByCategoryId(CategoryEntity categoryByCategoryId) {
-        this.categoryByCategoryId = categoryByCategoryId;
     }
 }

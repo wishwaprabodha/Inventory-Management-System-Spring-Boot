@@ -4,13 +4,11 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user_role", schema = "ipaytest2")
+@Table(name = "user_role", schema = "ipaytest2", catalog = "")
 public class UserRoleEntity {
     private int refId;
     private int userUserId;
     private int roleRoleId;
-    private UserEntity userByUserUserId;
-    private RoleEntity roleByRoleRoleId;
 
     @Id
     @Column(name = "refId")
@@ -56,25 +54,5 @@ public class UserRoleEntity {
     public int hashCode() {
 
         return Objects.hash(refId, userUserId, roleRoleId);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "user_userId", referencedColumnName = "userId", nullable = false)
-    public UserEntity getUserByUserUserId() {
-        return userByUserUserId;
-    }
-
-    public void setUserByUserUserId(UserEntity userByUserUserId) {
-        this.userByUserUserId = userByUserUserId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "role_roleId", referencedColumnName = "roleId", nullable = false)
-    public RoleEntity getRoleByRoleRoleId() {
-        return roleByRoleRoleId;
-    }
-
-    public void setRoleByRoleRoleId(RoleEntity roleByRoleRoleId) {
-        this.roleByRoleRoleId = roleByRoleRoleId;
     }
 }

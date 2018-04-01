@@ -4,13 +4,11 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "product_invoice", schema = "ipaytest2")
+@Table(name = "product_invoice", schema = "ipaytest2", catalog = "")
 public class ProductInvoiceEntity {
     private int refId;
     private int productProductId;
     private int invoiceInvoiceId;
-    private ProductEntity productByProductProductId;
-    private InvoiceEntity invoiceByInvoiceInvoiceId;
 
     @Id
     @Column(name = "refId")
@@ -56,25 +54,5 @@ public class ProductInvoiceEntity {
     public int hashCode() {
 
         return Objects.hash(refId, productProductId, invoiceInvoiceId);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "product_productId", referencedColumnName = "productId", nullable = false)
-    public ProductEntity getProductByProductProductId() {
-        return productByProductProductId;
-    }
-
-    public void setProductByProductProductId(ProductEntity productByProductProductId) {
-        this.productByProductProductId = productByProductProductId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "invoice_invoiceId", referencedColumnName = "invoiceId", nullable = false)
-    public InvoiceEntity getInvoiceByInvoiceInvoiceId() {
-        return invoiceByInvoiceInvoiceId;
-    }
-
-    public void setInvoiceByInvoiceInvoiceId(InvoiceEntity invoiceByInvoiceInvoiceId) {
-        this.invoiceByInvoiceInvoiceId = invoiceByInvoiceInvoiceId;
     }
 }

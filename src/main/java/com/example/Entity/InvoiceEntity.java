@@ -1,11 +1,10 @@
 package com.example.Entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "invoice", schema = "ipaytest2")
+@Table(name = "invoice", schema = "ipaytest2", catalog = "")
 public class InvoiceEntity {
     private int invoiceId;
     private Integer productId;
@@ -14,7 +13,6 @@ public class InvoiceEntity {
     private Double lineTotal;
     private Double total;
     private Integer version;
-    private Collection<ProductInvoiceEntity> productInvoicesByInvoiceId;
 
     @Id
     @Column(name = "invoiceId")
@@ -104,14 +102,5 @@ public class InvoiceEntity {
     public int hashCode() {
 
         return Objects.hash(invoiceId, productId, productName, quantity, lineTotal, total, version);
-    }
-
-    @OneToMany(mappedBy = "invoiceByInvoiceInvoiceId")
-    public Collection<ProductInvoiceEntity> getProductInvoicesByInvoiceId() {
-        return productInvoicesByInvoiceId;
-    }
-
-    public void setProductInvoicesByInvoiceId(Collection<ProductInvoiceEntity> productInvoicesByInvoiceId) {
-        this.productInvoicesByInvoiceId = productInvoicesByInvoiceId;
     }
 }

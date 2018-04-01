@@ -2,11 +2,10 @@ package com.example.Entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "product", schema = "ipaytest2")
+@Table(name = "product", schema = "ipaytest2", catalog = "")
 public class ProductEntity {
     private int productId;
     private String productName;
@@ -19,10 +18,6 @@ public class ProductEntity {
     private String lastModifiedUser;
     private Timestamp lastModifiedDateTime;
     private Integer version;
-    private CategoryEntity categoryByCategoryId;
-    private Collection<ProductInvoiceEntity> productInvoicesByProductId;
-    private Collection<ProductPricingEntity> productPricingsByProductId;
-    private Collection<StockEntity> stocksByProductId;
 
     @Id
     @Column(name = "productId")
@@ -156,42 +151,5 @@ public class ProductEntity {
     public int hashCode() {
 
         return Objects.hash(productId, productName, productIsService, productbuyingPrice, productsellingPrice, categoryId, createdUser, createdDateTime, lastModifiedUser, lastModifiedDateTime, version);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "categoryId", referencedColumnName = "categoryId")
-    public CategoryEntity getCategoryByCategoryId() {
-        return categoryByCategoryId;
-    }
-
-    public void setCategoryByCategoryId(CategoryEntity categoryByCategoryId) {
-        this.categoryByCategoryId = categoryByCategoryId;
-    }
-
-    @OneToMany(mappedBy = "productByProductProductId")
-    public Collection<ProductInvoiceEntity> getProductInvoicesByProductId() {
-        return productInvoicesByProductId;
-    }
-
-    public void setProductInvoicesByProductId(Collection<ProductInvoiceEntity> productInvoicesByProductId) {
-        this.productInvoicesByProductId = productInvoicesByProductId;
-    }
-
-    @OneToMany(mappedBy = "productByProductProductId")
-    public Collection<ProductPricingEntity> getProductPricingsByProductId() {
-        return productPricingsByProductId;
-    }
-
-    public void setProductPricingsByProductId(Collection<ProductPricingEntity> productPricingsByProductId) {
-        this.productPricingsByProductId = productPricingsByProductId;
-    }
-
-    @OneToMany(mappedBy = "productByProductId")
-    public Collection<StockEntity> getStocksByProductId() {
-        return stocksByProductId;
-    }
-
-    public void setStocksByProductId(Collection<StockEntity> stocksByProductId) {
-        this.stocksByProductId = stocksByProductId;
     }
 }
