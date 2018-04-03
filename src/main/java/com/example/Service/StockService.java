@@ -15,38 +15,24 @@ public class StockService {
     @Autowired
     private StockRepository stockRepository;
 
-    public Category insert(Stock stock) {
-        //entityManager.persist(category);
-
+    public void insert(Stock stock) {
         stockRepository.save(stock);
-        return stock.getCategory();
     }
-
 
     public Optional<Stock> findById(int id) {
         return stockRepository.findById(id);
-        //return entityManager.find(Category.class, id);
     }
 
     public Iterable<Stock> findAll() {
-        //Query query = entityManager.createNamedQuery("Category.add",Category.class);
         return stockRepository.findAll();
     }
 
-    //Implemented already
-   /* public void addCategory(Category categoryNew){
-        categoryDAO.addCategory(categoryNew);
-    }*/
-
-
-    public void updateStock(int id, Stock stock) {
-
+    public void updateStock(Stock stock) {
         stockRepository.save(stock);
     }
 
-    public void deleteStock(int id) {
-
-        stockRepository.deleteById(id);
+    public void deleteStock(Stock stock) {
+        stockRepository.delete(stock);
     }
 
 

@@ -24,25 +24,13 @@ public class PricingController {
     @Autowired
     public PricingService pricingService;
 
-
-   /* @RequestMapping("")
-    public List<Pricing> getAllPricing() {
-
-        //return pricingService.getAllCategoryList();
-        return pricingService.findAll();
-    }*/
-
-
     @RequestMapping("/pricings/{id}")
     public Optional<Pricing> searchPricing(@PathVariable int id) {
-        //return categoryService.searchCategory(id);
         return pricingService.find(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "")
     public void addPricing(@RequestBody Pricing pricing) {
-
-        //categoryService.addCategory(category);
         pricingService.insert(pricing);
     }
 
@@ -52,8 +40,8 @@ public class PricingController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE,value ="/{id}")
-    public void deletePricing(int pricingId) {
-        pricingService.deletePricing(pricingId);
+    public void deletePricing(@RequestBody Pricing pricing) {
+        pricingService.deletePricing(pricing);
     }
 
 

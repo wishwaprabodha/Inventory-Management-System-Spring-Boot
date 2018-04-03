@@ -57,9 +57,6 @@ public class Product implements Serializable {
 	@OneToMany(mappedBy="product")
 	private List<Stock> stocks;
 
-	public Product() {
-	}
-
 	public int getProductId() {
 		return this.productId;
 	}
@@ -163,6 +160,7 @@ public class Product implements Serializable {
 
 		return productInvoice;
 	}
+	
 
 	public ProductInvoice removeProductInvoice(ProductInvoice productInvoice) {
 		getProductInvoices().remove(productInvoice);

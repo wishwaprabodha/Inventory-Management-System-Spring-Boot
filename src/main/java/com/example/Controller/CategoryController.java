@@ -22,33 +22,27 @@ public class CategoryController {
 
     @RequestMapping("")
     public Iterable<Category> getAllCategory() {
-
-        //return categoryService.getAllCategoryList();
         return categoryService.findAll();
     }
 
-
     @RequestMapping("/{id}")
     public Optional<Category> searchCategory(@PathVariable int id) {
-        //return categoryService.searchCategory(id);
         return categoryService.findById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "")
     public void addCategory(@RequestBody Category category) {
-
-        //categoryService.addCategory(category);
         categoryService.insert(category);
     }
 
     @RequestMapping(method = RequestMethod.PUT,value ="/{id}")
-    public void updateCategory(@RequestBody Category category, @PathVariable int categoryId) {
-        categoryService.updateCategory(categoryId, category);
+    public void updateCategory(@RequestBody Category category) {
+        categoryService.updateCategory(category);
     }
 
     @RequestMapping(method = RequestMethod.DELETE,value ="/{id}")
-    public void deleteCategory(@PathVariable int categoryId) {
-        categoryService.deleteCategory(categoryId);
+    public void deleteCategory(@RequestBody Category category) {
+        categoryService.deleteCategory(category);
     }
 
 

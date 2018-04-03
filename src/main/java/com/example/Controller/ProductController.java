@@ -19,28 +19,21 @@ public class ProductController {
     @Autowired
     public ProductService productService;
 
-   /* @RequestMapping("")
-    public List<Product> getAllProducts() {
 
-        //return productService.getAllProductList();
+    @RequestMapping("")
+    public Iterable<Product> getAllProducts() {
         return productService.findAll();
-    }*/
-
+    }
 
     @RequestMapping("/{id}")
     public Optional<Product> searchProduct(@PathVariable int id) {
-        //return productService.searchProduct(id);
         return productService.find(id);
     }
 
-    // ToDo: Cant map request body with two entities (Product and Category)
-//    @RequestMapping(method = RequestMethod.POST, value = "")
-//    public void addProduct(@RequestBody Product product, @RequestBody Category category) {
-//
-//        //productService.addProduct(product);
-//        product.setCategoryByCategoryId(category);
-//        productService.insert(product);
-//    }
+    @RequestMapping(method = RequestMethod.POST, value = "")
+    public void addProduct(@RequestBody Product product) {
+        productService.insert(product);
+    }
 
     @RequestMapping(method = RequestMethod.PUT,value ="/{id}")
     public void updateProduct(@RequestBody Product product) {
@@ -48,22 +41,9 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE,value ="/{id}")
-    public void deleteProduct(int productId) {
-        productService.deleteProduct(productId);
+    public void deleteProduct(@RequestBody Product product) {
+        productService.deleteProduct(product);
     }
 
-  /*  @RequestMapping("/product/update/{id}")
-    public void updateProduct(@PathVariable int id,@RequestBody Product product){
-        productService.updateProduct(id,product);
-    }
 
-    @RequestMapping("/product/delete")
-    public void deleteProduct(@PathVariable int id){
-        productService.deleteProduct(id);
-    }
-
-    @RequestMapping("/product/{name}")
-    public List<Product> getByName(@PathVariable String name){return productService.getByName(name); }
-
-*/
 }

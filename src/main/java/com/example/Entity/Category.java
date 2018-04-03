@@ -1,5 +1,7 @@
 package com.example.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -42,15 +44,8 @@ public class Category implements Serializable {
 	@OneToMany(mappedBy="category")
 	private List<Stock> stocks;
 
-	public Category() {
-	}
-
 	public int getCategoryId() {
 		return this.categoryId;
-	}
-
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
 	}
 
 	public String getCategoryName() {
@@ -101,6 +96,11 @@ public class Category implements Serializable {
 		this.version = version;
 	}
 
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	@JsonIgnore
 	public List<Product> getProducts() {
 		return this.products;
 	}
@@ -108,6 +108,7 @@ public class Category implements Serializable {
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
+
 
 	public Product addProduct(Product product) {
 		getProducts().add(product);
