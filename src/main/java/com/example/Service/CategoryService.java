@@ -1,12 +1,11 @@
 package com.example.Service;
 
-import com.example.Entity.CategoryEntity;
+import com.example.Entity.Category;
 import com.example.Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -21,7 +20,7 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public int insert(CategoryEntity category) {
+    public int insert(Category category) {
         //entityManager.persist(category);
 
         categoryRepository.save(category);
@@ -29,23 +28,23 @@ public class CategoryService {
     }
 
 
-    public Optional<CategoryEntity> findById(int id) {
+    public Optional<Category> findById(int id) {
         return categoryRepository.findById(id);
-        //return entityManager.find(CategoryEntity.class, id);
+        //return entityManager.find(Category.class, id);
     }
 
-    public Iterable<CategoryEntity> findAll() {
-        //Query query = entityManager.createNamedQuery("Category.add",CategoryEntity.class);
+    public Iterable<Category> findAll() {
+        //Query query = entityManager.createNamedQuery("Category.add",Category.class);
         return categoryRepository.findAll();
     }
 
     //Implemented already
-   /* public void addCategory(CategoryEntity categoryNew){
+   /* public void addCategory(Category categoryNew){
         categoryDAO.addCategory(categoryNew);
     }*/
 
 
-    public void updateCategory(int id, CategoryEntity category) {
+    public void updateCategory(int id, Category category) {
 
         categoryRepository.save(category);
     }

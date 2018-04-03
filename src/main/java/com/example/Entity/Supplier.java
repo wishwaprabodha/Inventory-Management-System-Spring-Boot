@@ -4,16 +4,16 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
- * The persistent class for the supplier_log database table.
+ * The persistent class for the supplier database table.
  * 
  */
 @Entity
-@Table(name="supplier_log")
-@NamedQuery(name="SupplierLog.findAll", query="SELECT s FROM SupplierLogEntity s")
-public class SupplierLogEntity implements Serializable {
+@NamedQuery(name="Supplier.findAll", query="SELECT s FROM Supplier s")
+public class Supplier implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -38,7 +38,11 @@ public class SupplierLogEntity implements Serializable {
 
 	private BigDecimal version;
 
-	public SupplierLogEntity() {
+	//bi-directional many-to-one association to Stock
+	@OneToMany(mappedBy="supplier")
+	private List<Stock> stocks;
+
+	public Supplier() {
 	}
 
 	public int getSupplierId() {
@@ -111,6 +115,28 @@ public class SupplierLogEntity implements Serializable {
 
 	public void setVersion(BigDecimal version) {
 		this.version = version;
+	}
+
+	public List<Stock> getStocks() {
+		return this.stocks;
+	}
+
+	public void setStocks(List<Stock> stocks) {
+		this.stocks = stocks;
+	}
+
+	public Stock addStock(Stock stock) {
+		getStocks().add(stock);
+		stock.setSupplier(this);
+
+		return stock;
+	}
+
+	public Stock removeStock(Stock stock) {
+		getStocks().remove(stock);
+		stock.setSupplier(null);
+
+		return stock;
 	}
 
 }

@@ -1,46 +1,42 @@
 package com.example.Entity;
 
+import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Objects;
 
+
+/**
+ * The persistent class for the permission_log database table.
+ * 
+ */
 @Entity
-@Table(name = "permission_log", schema = "ipaytest2", catalog = "")
-public class PermissionLogEntity {
-    private int permissionId;
-    private String permissionName;
+@Table(name="permission_log")
+@NamedQuery(name="PermissionLog.findAll", query="SELECT p FROM PermissionLogEntity p")
+public class PermissionLogEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @Column(name = "permissionId")
-    public int getPermissionId() {
-        return permissionId;
-    }
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int permissionId;
 
-    public void setPermissionId(int permissionId) {
-        this.permissionId = permissionId;
-    }
+	private String permissionName;
 
-    @Basic
-    @Column(name = "permissionName")
-    public String getPermissionName() {
-        return permissionName;
-    }
+	public PermissionLogEntity() {
+	}
 
-    public void setPermissionName(String permissionName) {
-        this.permissionName = permissionName;
-    }
+	public int getPermissionId() {
+		return this.permissionId;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PermissionLogEntity that = (PermissionLogEntity) o;
-        return permissionId == that.permissionId &&
-                Objects.equals(permissionName, that.permissionName);
-    }
+	public void setPermissionId(int permissionId) {
+		this.permissionId = permissionId;
+	}
 
-    @Override
-    public int hashCode() {
+	public String getPermissionName() {
+		return this.permissionName;
+	}
 
-        return Objects.hash(permissionId, permissionName);
-    }
+	public void setPermissionName(String permissionName) {
+		this.permissionName = permissionName;
+	}
+
 }

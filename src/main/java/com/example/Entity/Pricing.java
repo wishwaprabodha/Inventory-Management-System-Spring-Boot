@@ -4,16 +4,16 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
- * The persistent class for the pricing_log database table.
+ * The persistent class for the pricing database table.
  * 
  */
 @Entity
-@Table(name="pricing_log")
-@NamedQuery(name="PricingLog.findAll", query="SELECT p FROM PricingLogEntity p")
-public class PricingLogEntity implements Serializable {
+@NamedQuery(name="Pricing.findAll", query="SELECT p FROM Pricing p")
+public class Pricing implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -42,7 +42,11 @@ public class PricingLogEntity implements Serializable {
 
 	private BigDecimal version;
 
-	public PricingLogEntity() {
+	//bi-directional many-to-one association to ProductPricing
+	@OneToMany(mappedBy="pricing")
+	private List<ProductPricing> productPricings;
+
+	public Pricing() {
 	}
 
 	public int getPricingId() {
@@ -123,6 +127,28 @@ public class PricingLogEntity implements Serializable {
 
 	public void setVersion(BigDecimal version) {
 		this.version = version;
+	}
+
+	public List<ProductPricing> getProductPricings() {
+		return this.productPricings;
+	}
+
+	public void setProductPricings(List<ProductPricing> productPricings) {
+		this.productPricings = productPricings;
+	}
+
+	public ProductPricing addProductPricing(ProductPricing productPricing) {
+		getProductPricings().add(productPricing);
+		productPricing.setPricing(this);
+
+		return productPricing;
+	}
+
+	public ProductPricing removeProductPricing(ProductPricing productPricing) {
+		getProductPricings().remove(productPricing);
+		productPricing.setPricing(null);
+
+		return productPricing;
 	}
 
 }

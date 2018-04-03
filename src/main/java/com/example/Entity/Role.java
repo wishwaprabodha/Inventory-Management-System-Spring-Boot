@@ -4,16 +4,16 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
- * The persistent class for the role_log database table.
+ * The persistent class for the role database table.
  * 
  */
 @Entity
-@Table(name="role_log")
-@NamedQuery(name="RoleLog.findAll", query="SELECT r FROM RoleLogEntity r")
-public class RoleLogEntity implements Serializable {
+@NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
+public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -34,7 +34,15 @@ public class RoleLogEntity implements Serializable {
 
 	private BigDecimal version;
 
-	public RoleLogEntity() {
+	//bi-directional many-to-one association to RolePermission
+	@OneToMany(mappedBy="role")
+	private List<RolePermission> rolePermissions;
+
+	//bi-directional many-to-one association to UserRole
+	@OneToMany(mappedBy="role")
+	private List<UserRole> userRoles;
+
+	public Role() {
 	}
 
 	public int getRoleId() {
@@ -91,6 +99,51 @@ public class RoleLogEntity implements Serializable {
 
 	public void setVersion(BigDecimal version) {
 		this.version = version;
+	}
+
+	public List<RolePermission> getRolePermissions() {
+		return this.rolePermissions;
+	}
+
+	public void setRolePermissions(List<RolePermission> rolePermissions) {
+		this.rolePermissions = rolePermissions;
+	}
+
+	public RolePermission addRolePermission(RolePermission rolePermission) {
+		getRolePermissions().add(rolePermission);
+		rolePermission.setRole(this);
+
+		return rolePermission;
+	}
+
+	public RolePermission removeRolePermission(RolePermission rolePermission) {
+		getRolePermissions().remove(rolePermission);
+		rolePermission.setRole(null);
+
+		return rolePermission;
+	}
+
+	public List<UserRole> getUserRoles() {
+		return this.userRoles;
+	}
+
+	public void setUserRoles(List<UserRole> userRoles) {
+		this.userRoles = userRoles;
+	}
+
+	public UserRole addUserRole(UserRole
+										userRole) {
+		getUserRoles().add(userRole);
+		userRole.setRole(this);
+
+		return userRole;
+	}
+
+	public UserRole removeUserRole(UserRole userRole) {
+		getUserRoles().remove(userRole);
+		userRole.setRole(null);
+
+		return userRole;
 	}
 
 }

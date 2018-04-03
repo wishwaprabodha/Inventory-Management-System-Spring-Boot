@@ -1,6 +1,6 @@
 package com.example.Service;
 
-import com.example.Entity.PricingEntity;
+import com.example.Entity.Pricing;
 import com.example.Repository.PricingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,33 +20,33 @@ public class PricingService {
     private PricingRepository pricingRepository;
 
 
-    public int insert(PricingEntity pricing) {
+    public int insert(Pricing pricing) {
         pricingRepository.save(pricing);
         return pricing.getPricingId();
     }
 
 
-    public Optional<PricingEntity> find(int id) {
+    public Optional<Pricing> find(int id) {
         return pricingRepository.findById(id);
-        //return entityManager.find(PricingEntity.class, id);
+        //return entityManager.find(Pricing.class, id);
     }
 
-   /* public List<PricingEntity> findAll() {
-        Query query = entityManager.createNamedQuery("Pricing.add",PricingEntity.class);
+   /* public List<Pricing> findAll() {
+        Query query = entityManager.createNamedQuery("Pricing.add",Pricing.class);
         return query.getResultList();
     }*/
 
-  /*  public void addPricing(PricingEntity pricingNew){
+  /*  public void addPricing(Pricing pricingNew){
 
         pricingRepository.save(pricingNew;
     }*/
 
-    /* public Optional<PricingEntity> searchPricing(int  id){
+    /* public Optional<Pricing> searchPricing(int  id){
 
          return pricingRepository.findById(id);
      }*/
     //
-    public void updatePricing(PricingEntity pricing) {
+    public void updatePricing(Pricing pricing) {
         pricingRepository.save(pricing);
     }
 

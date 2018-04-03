@@ -1,6 +1,6 @@
 package com.example.Service;
 
-import com.example.Entity.ProductEntity;
+import com.example.Entity.Product;
 import com.example.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,30 +21,30 @@ public class ProductService {
     public ProductRepository productRepository;
 
     //Return type confliction,changed to void
-    public void insert(ProductEntity product) {
+    public void insert(Product product) {
         productRepository.save(product);
     }
 
-    public Optional<ProductEntity> find(int id) {
+    public Optional<Product> find(int id) {
         return productRepository.findById(id);
     }
 
-    /*public List<ProductEntity> findAll() {
-        Query query = entityManager.createNamedQuery("Product.add",ProductEntity.class);
+    /*public List<Product> findAll() {
+        Query query = entityManager.createNamedQuery("Product.add",Product.class);
         return query.getResultList();
     }*/
 
-  /*  public void addProduct(ProductEntity productNew){
+  /*  public void addProduct(Product productNew){
 
         productDAO.;
     }*/
 /*
-    public Optional<ProductEntity> searchProduct(int  id){
+    public Optional<Product> searchProduct(int  id){
 
         return productDAO.findById(id);
     }*/
 
-    public void updateProduct(ProductEntity product) {
+    public void updateProduct(Product product) {
 
         productRepository.save(product);
     }

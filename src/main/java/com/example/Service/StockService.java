@@ -1,6 +1,7 @@
 package com.example.Service;
 
-import com.example.Entity.StockEntity;
+import com.example.Entity.Category;
+import com.example.Entity.Stock;
 import com.example.Repository.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,31 +15,31 @@ public class StockService {
     @Autowired
     private StockRepository stockRepository;
 
-    public int insert(StockEntity stock) {
+    public Category insert(Stock stock) {
         //entityManager.persist(category);
 
         stockRepository.save(stock);
-        return stock.getCategoryId();
+        return stock.getCategory();
     }
 
 
-    public Optional<StockEntity> findById(int id) {
+    public Optional<Stock> findById(int id) {
         return stockRepository.findById(id);
-        //return entityManager.find(CategoryEntity.class, id);
+        //return entityManager.find(Category.class, id);
     }
 
-    public Iterable<StockEntity> findAll() {
-        //Query query = entityManager.createNamedQuery("Category.add",CategoryEntity.class);
+    public Iterable<Stock> findAll() {
+        //Query query = entityManager.createNamedQuery("Category.add",Category.class);
         return stockRepository.findAll();
     }
 
     //Implemented already
-   /* public void addCategory(CategoryEntity categoryNew){
+   /* public void addCategory(Category categoryNew){
         categoryDAO.addCategory(categoryNew);
     }*/
 
 
-    public void updateStock(int id, StockEntity stock) {
+    public void updateStock(int id, Stock stock) {
 
         stockRepository.save(stock);
     }

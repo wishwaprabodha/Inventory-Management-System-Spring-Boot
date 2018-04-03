@@ -7,20 +7,19 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the stock_log database table.
+ * The persistent class for the stock database table.
  * 
  */
 @Entity
-@Table(name="stock_log")
-@NamedQuery(name="StockLog.findAll", query="SELECT s FROM StockLogEntity s")
-public class StockLogEntity implements Serializable {
+@NamedQuery(name="Stock.findAll", query="SELECT s FROM Stock s")
+public class Stock implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int refId;
 
-	private int categoryId;
+	private String branchId;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDateTime;
@@ -35,17 +34,28 @@ public class StockLogEntity implements Serializable {
 
 	private String lastModifiedUser;
 
-	private int productId;
-
 	private int quantity;
 
 	private int stockId;
 
-	private int supplierId;
-
 	private BigDecimal version;
 
-	public StockLogEntity() {
+	//bi-directional many-to-one association to Product
+	@ManyToOne
+	@JoinColumn(name="productId")
+	private Product product;
+
+	//bi-directional many-to-one association to Supplier
+	@ManyToOne
+	@JoinColumn(name="supplierId")
+	private Supplier supplier;
+
+	//bi-directional many-to-one association to Category
+	@ManyToOne
+	@JoinColumn(name="categoryId")
+	private Category category;
+
+	public Stock() {
 	}
 
 	public int getRefId() {
@@ -56,12 +66,12 @@ public class StockLogEntity implements Serializable {
 		this.refId = refId;
 	}
 
-	public int getCategoryId() {
-		return this.categoryId;
+	public String getBranchId() {
+		return this.branchId;
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setBranchId(String branchId) {
+		this.branchId = branchId;
 	}
 
 	public Date getCreatedDateTime() {
@@ -104,14 +114,6 @@ public class StockLogEntity implements Serializable {
 		this.lastModifiedUser = lastModifiedUser;
 	}
 
-	public int getProductId() {
-		return this.productId;
-	}
-
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
-
 	public int getQuantity() {
 		return this.quantity;
 	}
@@ -128,20 +130,36 @@ public class StockLogEntity implements Serializable {
 		this.stockId = stockId;
 	}
 
-	public int getSupplierId() {
-		return this.supplierId;
-	}
-
-	public void setSupplierId(int supplierId) {
-		this.supplierId = supplierId;
-	}
-
 	public BigDecimal getVersion() {
 		return this.version;
 	}
 
 	public void setVersion(BigDecimal version) {
 		this.version = version;
+	}
+
+	public Product getProduct() {
+		return this.product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Supplier getSupplier() {
+		return this.supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
+	public Category getCategory() {
+		return this.category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 }

@@ -7,20 +7,20 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the product_log database table.
+ * The persistent class for the category_log database table.
  * 
  */
 @Entity
-@Table(name="product_log")
-@NamedQuery(name="ProductLog.findAll", query="SELECT p FROM ProductLogEntity p")
-public class ProductLogEntity implements Serializable {
+@Table(name="category_log")
+@NamedQuery(name="CategoryLog.findAll", query="SELECT c FROM CategoryLog c")
+public class CategoryLog implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int productId;
-
 	private int categoryId;
+
+	private String categoryName;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDateTime;
@@ -32,27 +32,9 @@ public class ProductLogEntity implements Serializable {
 
 	private String lastModifiedUser;
 
-	private int pricingId;
-
-	private double productbuyingPrice;
-
-	private byte productIsService;
-
-	private String productName;
-
-	private double productsellingPrice;
-
 	private BigDecimal version;
 
-	public ProductLogEntity() {
-	}
-
-	public int getProductId() {
-		return this.productId;
-	}
-
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public CategoryLog() {
 	}
 
 	public int getCategoryId() {
@@ -61,6 +43,14 @@ public class ProductLogEntity implements Serializable {
 
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public String getCategoryName() {
+		return this.categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	public Date getCreatedDateTime() {
@@ -93,46 +83,6 @@ public class ProductLogEntity implements Serializable {
 
 	public void setLastModifiedUser(String lastModifiedUser) {
 		this.lastModifiedUser = lastModifiedUser;
-	}
-
-	public int getPricingId() {
-		return this.pricingId;
-	}
-
-	public void setPricingId(int pricingId) {
-		this.pricingId = pricingId;
-	}
-
-	public double getProductbuyingPrice() {
-		return this.productbuyingPrice;
-	}
-
-	public void setProductbuyingPrice(double productbuyingPrice) {
-		this.productbuyingPrice = productbuyingPrice;
-	}
-
-	public byte getProductIsService() {
-		return this.productIsService;
-	}
-
-	public void setProductIsService(byte productIsService) {
-		this.productIsService = productIsService;
-	}
-
-	public String getProductName() {
-		return this.productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-	public double getProductsellingPrice() {
-		return this.productsellingPrice;
-	}
-
-	public void setProductsellingPrice(double productsellingPrice) {
-		this.productsellingPrice = productsellingPrice;
 	}
 
 	public BigDecimal getVersion() {

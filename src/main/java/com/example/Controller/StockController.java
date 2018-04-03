@@ -1,6 +1,6 @@
 package com.example.Controller;
 
-import com.example.Entity.StockEntity;
+import com.example.Entity.Stock;
 import com.example.Service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ public class StockController {
     private StockService stockService;
 
     @RequestMapping("")
-    public Iterable<StockEntity> getAllStock() {
+    public Iterable<Stock> getAllStock() {
 
         //return categoryService.getAllCategoryList();
         return stockService.findAll();
@@ -22,20 +22,20 @@ public class StockController {
 
 
     @RequestMapping("/{id}")
-    public Optional<StockEntity> searchStock(@PathVariable int id) {
+    public Optional<Stock> searchStock(@PathVariable int id) {
         //return categoryService.searchCategory(id);
         return stockService.findById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "")
-    public void addStock(@RequestBody StockEntity stock) {
+    public void addStock(@RequestBody Stock stock) {
 
         //categoryService.addCategory(category);
         stockService.insert(stock);
     }
 
     @RequestMapping(method = RequestMethod.PUT,value ="/{id}")
-    public void updateStock(@RequestBody StockEntity stock, @PathVariable int stockId) {
+    public void updateStock(@RequestBody Stock stock, @PathVariable int stockId) {
         stockService.updateStock(stockId, stock);
     }
 

@@ -4,16 +4,16 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
- * The persistent class for the user_log database table.
+ * The persistent class for the user database table.
  * 
  */
 @Entity
-@Table(name="user_log")
-@NamedQuery(name="UserLog.findAll", query="SELECT u FROM UserLogEntity u")
-public class UserLogEntity implements Serializable {
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -44,7 +44,11 @@ public class UserLogEntity implements Serializable {
 
 	private BigDecimal version;
 
-	public UserLogEntity() {
+	//bi-directional many-to-one association to UserRole
+	@OneToMany(mappedBy="user")
+	private List<UserRole> userRoles;
+
+	public User() {
 	}
 
 	public int getUserId() {
@@ -141,6 +145,28 @@ public class UserLogEntity implements Serializable {
 
 	public void setVersion(BigDecimal version) {
 		this.version = version;
+	}
+
+	public List<UserRole> getUserRoles() {
+		return this.userRoles;
+	}
+
+	public void setUserRoles(List<UserRole> userRoles) {
+		this.userRoles = userRoles;
+	}
+
+	public UserRole addUserRole(UserRole userRole) {
+		getUserRoles().add(userRole);
+		userRole.setUser(this);
+
+		return userRole;
+	}
+
+	public UserRole removeUserRole(UserRole userRole) {
+		getUserRoles().remove(userRole);
+		userRole.setUser(null);
+
+		return userRole;
 	}
 
 }
