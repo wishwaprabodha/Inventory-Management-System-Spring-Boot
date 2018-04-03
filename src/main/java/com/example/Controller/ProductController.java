@@ -42,12 +42,12 @@ public class ProductController {
 //        productService.insert(product);
 //    }
 
-    @RequestMapping("/update/{id}")
+    @RequestMapping(method = RequestMethod.PUT,value ="/{id}")
     public void updateProduct(@RequestBody ProductEntity product) {
         productService.updateProduct(product);
     }
 
-    @RequestMapping("/delete/{id}")
+    @RequestMapping(method = RequestMethod.DELETE,value ="/{id}")
     public void deleteProduct(int productId) {
         productService.deleteProduct(productId);
     }

@@ -46,12 +46,12 @@ public class PricingController {
         pricingService.insert(pricing);
     }
 
-    @RequestMapping("/pricings/update/{id}")
+    @RequestMapping(method = RequestMethod.PUT,value ="/{id}")
     public void updateCategory(@RequestBody PricingEntity pricing) {
         pricingService.updatePricing(pricing);
     }
 
-    @RequestMapping("/pricings/delete/{id}")
+    @RequestMapping(method = RequestMethod.DELETE,value ="/{id}")
     public void deletePricing(int pricingId) {
         pricingService.deletePricing(pricingId);
     }

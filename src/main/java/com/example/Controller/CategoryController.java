@@ -41,12 +41,12 @@ public class CategoryController {
         categoryService.insert(category);
     }
 
-    @RequestMapping("/update/{id}")
+    @RequestMapping(method = RequestMethod.PUT,value ="/{id}")
     public void updateCategory(@RequestBody CategoryEntity category, @PathVariable int categoryId) {
         categoryService.updateCategory(categoryId, category);
     }
 
-    @RequestMapping("/delete/{id}")
+    @RequestMapping(method = RequestMethod.DELETE,value ="/{id}")
     public void deleteCategory(int categoryId) {
         categoryService.deleteCategory(categoryId);
     }

@@ -15,6 +15,22 @@ public class CategoryEntity {
     private Timestamp lastModifiedDateTime;
     private Integer version;
 
+    public CategoryEntity(){
+        
+    }
+
+    public CategoryEntity(int categoryId, String categoryName,
+                          String createdUser, Timestamp createdDateTime, String lastModifiedUser,
+                          Timestamp lastModifiedDateTime, Integer version) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+        this.createdUser = createdUser;
+        this.createdDateTime = createdDateTime;
+        this.lastModifiedUser = lastModifiedUser;
+        this.lastModifiedDateTime = lastModifiedDateTime;
+        this.version = version;
+    }
+
     @Id
     @Column(name = "categoryId")
     public int getCategoryId() {
