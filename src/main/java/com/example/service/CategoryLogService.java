@@ -31,7 +31,7 @@ public class CategoryLogService {
         categoryLogRepository.save(categoryLog);
     }
 
-    public void deletecategoryLog(CategoryLogEntity categoryLog) {
+    public void deleteCategoryLog(CategoryLogEntity categoryLog) {
         categoryLogRepository.delete(categoryLog);
     }
 

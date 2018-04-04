@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.TheLogConverter;
+import com.example.entity.TheLogConverter;
 import com.example.entity.Category;
 import com.example.service.CategoryLogService;
 import com.example.service.CategoryService;
