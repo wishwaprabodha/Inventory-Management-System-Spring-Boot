@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.entity.CategoryLog;
+import com.example.entity.CategoryLogEntity;
 import com.example.repository.CategoryLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,24 +14,24 @@ public class CategoryLogService {
     @Autowired
     private CategoryLogRepository categoryLogRepository;
 
-    public void insert(CategoryLog categoryLog) {
+    public void insert(CategoryLogEntity categoryLog) {
         categoryLogRepository.save(categoryLog);
     }
 
 
-    public Optional<CategoryLog> findById(int id) {
+    public Optional<CategoryLogEntity> findById(int id) {
         return categoryLogRepository.findById(id);
     }
 
-    public Iterable<CategoryLog> findAll() {
+    public Iterable<CategoryLogEntity> findAll() {
         return categoryLogRepository.findAll();
     }
 
-    public void updateCategoryLog(CategoryLog categoryLog) {
+    public void updateCategoryLog(CategoryLogEntity categoryLog) {
         categoryLogRepository.save(categoryLog);
     }
 
-    public void deletecategoryLog(CategoryLog categoryLog) {
+    public void deletecategoryLog(CategoryLogEntity categoryLog) {
         categoryLogRepository.delete(categoryLog);
     }
 

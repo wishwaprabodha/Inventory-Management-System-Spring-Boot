@@ -39,7 +39,7 @@ public class StockLogEntity implements Serializable {
 
 	private int quantity;
 
-	private int stockId;
+	//private int stockId;
 
 	private int supplierId;
 
@@ -120,13 +120,13 @@ public class StockLogEntity implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public int getStockId() {
+	/*public int getStockId() {
 		return this.stockId;
 	}
 
 	public void setStockId(int stockId) {
 		this.stockId = stockId;
-	}
+	}*/
 
 	public int getSupplierId() {
 		return this.supplierId;

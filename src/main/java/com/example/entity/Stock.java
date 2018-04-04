@@ -36,7 +36,7 @@ public class Stock implements Serializable {
 
 	private int quantity;
 
-	private int stockId;
+	//private int stockId;
 
 	private BigDecimal version;
 
@@ -122,13 +122,13 @@ public class Stock implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public int getStockId() {
+	/*public int getStockId() {
 		return this.stockId;
 	}
 
 	public void setStockId(int stockId) {
 		this.stockId = stockId;
-	}
+	}*/
 
 	public BigDecimal getVersion() {
 		return this.version;

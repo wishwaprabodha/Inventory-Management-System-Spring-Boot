@@ -12,8 +12,8 @@ import java.util.Date;
  */
 @Entity
 @Table(name="category_log")
-@NamedQuery(name="CategoryLog.findAll", query="SELECT c FROM CategoryLog c")
-public class CategoryLog implements Serializable {
+@NamedQuery(name="CategoryLog.findAll", query="SELECT c FROM CategoryLogEntity c")
+public class CategoryLogEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -34,11 +34,11 @@ public class CategoryLog implements Serializable {
 
 	private BigDecimal version;
 
-	public CategoryLog() {
+	public CategoryLogEntity() {
 	}
 
-	public CategoryLog(String categoryName, Date createdDateTime, String createdUser,
-					   Date lastModifiedDateTime, String lastModifiedUser, BigDecimal version) {
+	public CategoryLogEntity(String categoryName, Date createdDateTime, String createdUser,
+							 Date lastModifiedDateTime, String lastModifiedUser, BigDecimal version) {
 		this.categoryName = categoryName;
 		this.createdDateTime = createdDateTime;
 		this.createdUser = createdUser;
