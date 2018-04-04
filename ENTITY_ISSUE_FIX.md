@@ -18,3 +18,6 @@ There were unnecessary mappings in Entity file (When mapping ManyToOne)
 >Note: Deselect "Add to Persistence Unit"
 1. Fix remaining compiling issues (build project)
 1. Run
+
+## Issue in refactoring Log classes
+1. When the LogEntity classes are refactored to Log, entitybeanfactory exception coming up. Reason for that is not yet found
